@@ -13,11 +13,15 @@ using Riddleyinnai.Fuctions.Items;
 using Riddleyinnai.Fuctions.Map;
 using Riddleyinnai.Fuctions.SpRoleManage;
 using Riddleyinnai.Fuctions.SpRoles;
+using Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
 using Riddleyinnai.Fuctions.SpRoles.CllassD;
+using Riddleyinnai.Fuctions.SpRoles.MTFRoles;
+using Riddleyinnai.Fuctions.SpRoles.SCPRoles;
+using Riddleyinnai.Fuctions.SpRoles.Tutroles;
 
 namespace Riddleyinnai
 {
-    public class Main : Plugin<Config>
+    public class Main : Plugin<YinNaiConfig>
     {
         public override string Name => "迷子音奈主插件";
         public override string Author => "Niruri";
@@ -73,11 +77,8 @@ namespace Riddleyinnai
                     //Fuctions.Alloction.Main.Register();
                     Fuctions.Alloction.Roundwaiting.Register();
                     Fuctions.Omega.Register();
-                    Fuctions.Playtime.Register();
-                    Fuctions.Roledefault.Register();
                     Fuctions.SCPMaxHP.Register();
                     Fuctions.SysWarhead.Register();
-                    Fuctions.SCPBoost.Register();
                     Fuctions.SCP_524.Register();
                     Fuctions.Effectkeeper.Register();
                     Fuctions.SupplyMap.Register();
@@ -94,7 +95,6 @@ namespace Riddleyinnai
                     
                     User.Achieve.Main.Register();
                     User.Achieve.Details.Box.Register();
-                    User.Achieve.Details.Genshin.Register();
                     User.Achieve.Details.Airlock.Register();
                     User.Achieve.Details.Box.Register();
                     User.Achieve.Details.Crazyer.Register();
@@ -114,6 +114,7 @@ namespace Riddleyinnai
                     User.Achieve.Details.ZombiesKiller.Register();
                     D9341Events.Register();
                     SCP181Event.Register();
+                    SCP069Event.Register();
                     RoleManger.Register();
                     User.Exp.Register();
                     User.StatTrak.Register();
@@ -122,17 +123,21 @@ namespace Riddleyinnai
                     
                     User.Permission.Register(); 
                     */
-
-
+                    NTFHealth.Register();
+                    SCP035Event.Register();
                     Fuctions.Hoilday.Killrank.Register();
                     Fuctions.Hoilday.Nospawn.Register();
                     gatec.Register();
+                    SCP999Event.Reg();
+                    LieSheDan.Reg();
                     SCP2818.Register();
+                    SCP550Event.Register();
                     SuperMedik.Register();
-
+                    SCP1143.Register();
                     ILoop.Register();
+                    JuJiQiang.Reg();
                     ETC.Register();
-                    
+                    SCP2490Event.Register();
                     exception = null;
                     return true;
                 }
@@ -151,11 +156,8 @@ namespace Riddleyinnai
                     //Fuctions.Alloction.Main.Unregister();
                     Fuctions.Alloction.Roundwaiting.Unregister();
                     Fuctions.Omega.Unregister();
-                    Fuctions.Playtime.Unregister();
-                    Fuctions.Roledefault.Unregister();
                     Fuctions.SCPMaxHP.Unregister();
                     Fuctions.SysWarhead.Unregister();
-                    Fuctions.SCPBoost.Unregister();
                     Fuctions.SCP_524.Unregister();
                     Fuctions.Effectkeeper.Unregister();
                     //Fuctions.SupplyMap.Unregister();
@@ -175,7 +177,6 @@ namespace Riddleyinnai
                     User.Achieve.Details.Doorbreaker.Unregister();
                     User.Achieve.Details.Escapingpocket.Unregister();
                     User.Achieve.Details.Fallinggod.Unregister();
-                    User.Achieve.Details.Genshin.Unregister();
                     User.Achieve.Details.Healer.Unregister();
                     User.Achieve.Details.Jumpgod.Unregister();
                     User.Achieve.Details.Killbest.Unregister();
@@ -192,16 +193,24 @@ namespace Riddleyinnai
                     User.StatTrak.Unregister();
                     D9341Events.UnRegister();
                     SCP181Event.UnRegister();
-
+                    LieSheDan.UnReg();
                     Fuctions.Hoilday.Killrank.Unregister();
                     Fuctions.Hoilday.Nospawn.Unregister();
                     DaMa.UnRegister();
                     gatec.UnRegister();
                     SCP2818.UnRegister();
                     SuperMedik.UnRegister();
+                    SCP069Event.UnRegister();
                     ILoop.Unregister();
+                    SCP035Event.UnRegister();
                     ETC.Unregister();
-                    RoleManger.Unregister();
+                    RoleManger.Unregister();             
+                    SCP999Event.UnReg();
+                    SCP2490Event.UnRegister();
+                    SCP1143.UnRegister();
+                    SCP550Event.UnRegister();
+                    NTFHealth.UnRegister();
+                    JuJiQiang.UnReg();
                     exception = null;
                     return true;
                 }

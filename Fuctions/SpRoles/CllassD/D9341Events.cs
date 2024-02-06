@@ -28,10 +28,13 @@ public class D9341Events
         player.AddItem(ItemType.Coin);
         savetime = 0;
         player.AddItem(ItemType.Flashlight);
-        D9341role = player.Role.Type;
-        D9341Hp = player.Health;
-        D9341Pos = player.Position;
         D9341cd = true;
+        Timing.CallDelayed(5f, () =>
+        {
+            D9341role = player.Role.Type;
+            D9341Hp = player.Health;
+            D9341Pos = player.Position;
+        });
         Timing.CallDelayed(300f, () =>
         {
             D9341cd = false;
@@ -41,8 +44,8 @@ public class D9341Events
             D9341Items.Add(item.Type);
         }
         player.RankName = "D-9341";
-        player.RankColor = "yellow";
-        Ui.PlayerMain.Send(player, $"<b><size=25>你是 D-9341</b></size>存档：右键丢弃一枚硬币保存一次角色在此时此刻的状态，位置，背包道具等。\n读档：右键手电筒时回到最近一次存档的状态。手电筒开局CD五分钟\n死亡读档：若角色已存档，在死亡时回到最近一次存档的状态并失去角色特性。",10,Ui.Pos.正中偏下,5);
+        player.RankColor = "orange";
+        Ui.PlayerMain.Send(player, $"<color=#FFFFCC>你是:</color><color=#FFCC66>[SCP-d9341]</color>\n<color=#FFFFCC>1.存档：右键丢弃</color><color=#FF3333>一枚硬币后</color><color=#FFFFCC>保存一次角色此时的状态</color>\n<color=#FFFFCC>2.读档：右键</color><color=#FF3333>手电筒后</color><color=#FFFFCC>读取上一次存档状态，手电筒开局cd5分钟</color>\n<color=#FFFFCC>3.死亡读档：若角色已经存档，在</color><color=#FF3333>死亡后</color><color=#FFFFCC>读取上一次存档状态，但失去角色特性</color>",15,Ui.Pos.正中偏下,5);
     }
 
     private static void OnDropingItem(DroppingItemEventArgs ev)
@@ -52,7 +55,7 @@ public class D9341Events
             if (ev.Item.Type == ItemType.Coin)
             {
                 ev.IsAllowed = false;
-                if(ev.Player.CurrentRoom.Type != RoomType.Pocket)
+                if(ev.Player.CurrentRoom.Type != RoomType.Pocket && !ev.Player.IsJumping)
                 {
                     ev.Player.RemoveItem(ev.Item);
                     savetime++;
@@ -144,37 +147,40 @@ public class D9341Events
     {
         if (RoleManger.IsRole(ev.Player.Id,RoleManger.RoleName.D9341))
         {
-            ev.IsAllowed = false;
-            if (ev.Player.Role.Type != D9341role)
+            Timing.CallDelayed(0.1f, () =>
             {
-                ev.Player.Role.Set(D9341role, SpawnReason.Respawn, RoleSpawnFlags.None);
-            }
-            ev.Player.ClearInventory();
-            bool flag = false;
-            foreach (var id in D9341Items)
-            {
-                var tmp = ev.Player.AddItem(id);
-                if (havescp2818)
+                if (ev.Player.Role.Type != D9341role)
                 {
-                    if (!flag)
-                    {
-                        if (id == ItemType.GunCOM15)
-                        {
-                            SCP2818.scp2818id.Add(tmp.Serial);
-                            flag = true;
-                        }
-                    }
-
+                    ev.Player.Role.Set(D9341role, SpawnReason.Respawn, RoleSpawnFlags.None);
                 }
-            }
-            ev.Player.Health = D9341Hp;
-            ev.Player.DisableAllEffects();
-            Timing.CallDelayed(0.02f, () =>
-            {
-                ev.Player.Position = D9341Pos + Vector3.up;
-                Reset();
+                ev.Player.ClearInventory();
+                bool flag = false;
+                foreach (var id in D9341Items)
+                {
+                    var tmp = ev.Player.AddItem(id);
+                    if (havescp2818)
+                    {
+                        if (!flag)
+                        {
+                            if (id == ItemType.GunCOM15)
+                            {
+                                SCP2818.scp2818id.Add(tmp.Serial);
+                                flag = true;
+                            }
+                        }
+
+                    }
+                }
+                ev.Player.Health = D9341Hp;
+                ev.Player.DisableAllEffects();
+                Timing.CallDelayed(0.02f, () =>
+                {
+                    ev.Player.Position = D9341Pos + Vector3.up;
+                    Reset();
+                });
+                ev.Player.RankName = "";
             });
-            ev.Player.RankName = "";
+
         }
     }
     public static void Register()

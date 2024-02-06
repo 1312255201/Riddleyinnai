@@ -116,7 +116,7 @@ namespace Riddleyinnai.Fuctions
             {
                 foreach (var itemInfo in item.Value)
                 {
-                    SpawnItem(spawnpoint, item.Key, itemInfo);
+                    //SpawnItem(spawnpoint, item.Key, itemInfo);
                 }
             }
 

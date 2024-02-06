@@ -19,8 +19,8 @@ public class SCP181Event
     public static void SpawnAScp181(Player player)
     {
         SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP181,"",Side.ChaosInsurgency,false);
-        YYYApi.MyApi.SetNickName("SCP-181","pink",player);
-        Ui.PlayerMain.Send(player,"你是[SCP-181]有百分之一几率强制开启需要卡才能开启的门.\n免疫低于5的伤害，大于5的伤害，免疫1次，之后67%免疫\n不会触发电网，即使附近有其他玩家\n减少被SCP-939看到的时间，2.5秒降低到1秒]",5,Pos.正中偏下,5);
+        YYYApi.MyApi.SetNickName("SCP-181","orange",player);
+        Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FFCC66>[SCP-181]</color>\n<color=#FFFFCC>1.你有百分之一的概率</color><color=#FF3333>强制</color><color=#FFFFCC>开启需要卡才能开启的门</color>\n<color=#FFFFCC>2.你可以免疫低于5的伤害</color><color=#FF3333>1次</color><color=#FFFFCC>，对于其他伤害也有免疫效果</color>\n<color=#FFFFCC>3.你不会</color><color=#FF3333>触发电网</color>\n<color=#FFFFCC>4.你可以</color><color=#FF3333>减少被SCP-939看到的时间</color><color=#FFFFCC>，2.5秒降至1秒</color>",10,Pos.正中偏下,5);
         player.AddItem((ItemType)new System.Random().Next(0, 12));
     }
 
@@ -28,7 +28,7 @@ public class SCP181Event
     {
         if (RoleManger.IsRole(ev.Player.Id,RoleManger.RoleName.SCP181))
         {
-            if (new System.Random().Next(1, 100) >= 99)
+            if (new System.Random().Next(1, 100) >= 80)
             {
                 if (!ev.Door.IsLocked)
                 {
@@ -60,7 +60,6 @@ public class SCP181Event
                 }
             }
         }
-
     }
     private static void OnRoundEnded(RoundEndedEventArgs ev)
     {

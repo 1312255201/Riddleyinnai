@@ -51,6 +51,8 @@ namespace Riddleyinnai.Fuctions
         }
         public static void Register()
         {
+            Warheadtime = Main.Singleton.Config.Syswarhead;
+
             Exiled.Events.Handlers.Server.RoundStarted += Roundstart;
             Exiled.Events.Handlers.Server.EndingRound += Endinground;
             Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnded;

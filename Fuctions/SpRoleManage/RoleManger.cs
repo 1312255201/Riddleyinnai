@@ -210,7 +210,7 @@ namespace Riddleyinnai.Fuctions.SpRoleManage
 
         public enum RoleName
         {
-D9341,SCP181,SCPCN08
+D9341,SCP181,SCPCN08,SCP069,SCP493,SCP2490,SCP1143,SCP550,九尾狐医疗兵,九尾狐狙击手,SCP035,SCP999
 
         }
 

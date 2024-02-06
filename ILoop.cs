@@ -138,8 +138,8 @@ namespace Riddleyinnai
                 time++;
                 try { Playerlistinfo.Editlist(); } catch { }
                 try { Fuctions.Broadcast.Sys_Broadcast(time); } catch { }
-                try { Misc.Playerinfo.Info(); } catch { }
-                try { Moveboost.SCPMove(); } catch { }
+                /*try { Misc.Playerinfo.Info(); } catch { }*/
+                //try { Moveboost.SCPMove(); } catch { }
                 try { SCPRecovery.CheckSCP(); } catch { }
                 try { Exp.Onescaping(); } catch { }
                 yield return Timing.WaitForSeconds(1);

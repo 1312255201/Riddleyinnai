@@ -40,32 +40,35 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>D:\GitHub\YYYLikeReload\packages\Input\Assembly-CSharp-Publicized.dll</HintPath>
     </Reference>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>J:\scpsl13.2\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\CommandSystem.Core.dll</HintPath>
+      <HintPath>packages\EXILED.8.7.1\lib\net48\CommandSystem.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.API, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.API.dll</HintPath>
+    <Reference Include="Exiled.API, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.API.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CreditTags, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.CreditTags.dll</HintPath>
+    <Reference Include="Exiled.CreditTags, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.CreditTags.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomItems, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.CustomItems.dll</HintPath>
+    <Reference Include="Exiled.CustomItems, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.CustomItems.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.CustomRoles, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.CustomRoles.dll</HintPath>
+    <Reference Include="Exiled.CustomRoles, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.CustomRoles.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Events, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.Events.dll</HintPath>
+    <Reference Include="Exiled.Events, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.Events.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Loader, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.Loader.dll</HintPath>
+    <Reference Include="Exiled.Loader, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.Loader.dll</HintPath>
     </Reference>
-    <Reference Include="Exiled.Permissions, Version=8.7.0.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\Exiled.Permissions.dll</HintPath>
+    <Reference Include="Exiled.Permissions, Version=8.7.1.0, Culture=neutral, processorArchitecture=Amd64">
+      <HintPath>packages\EXILED.8.7.1\lib\net48\Exiled.Permissions.dll</HintPath>
     </Reference>
     <Reference Include="MapEditorReborn">
       <HintPath>J:\Download\MapEditorReborn.dll</HintPath>
@@ -77,10 +80,10 @@
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NorthwoodLib, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\NorthwoodLib.dll</HintPath>
+      <HintPath>packages\EXILED.8.7.1\lib\net48\NorthwoodLib.dll</HintPath>
     </Reference>
     <Reference Include="PluginAPI, Version=13.1.2.0, Culture=neutral, processorArchitecture=Amd64">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\PluginAPI.dll</HintPath>
+      <HintPath>packages\EXILED.8.7.1\lib\net48\PluginAPI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -97,18 +100,30 @@
       <HintPath>J:\scpsl13.2\SCPSL_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>packages\EXILED.8.7.0\lib\net48\YamlDotNet.dll</HintPath>
+      <HintPath>packages\EXILED.8.7.1\lib\net48\YamlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="YinnaiAPI">
       <HintPath>..\YinnaiAPI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fuctions\Commands\AdminCommands\spawnscpcommand.cs" />
+    <Compile Include="Fuctions\Items\JuJiQiang.cs" />
+    <Compile Include="Fuctions\Items\LieSheDan.cs" />
+    <Compile Include="Fuctions\SpRoles\ChaosRoles\SCP2490Event.cs" />
     <Compile Include="Fuctions\SpRoles\CllassD\D9341Events.cs" />
+    <Compile Include="Fuctions\SpRoles\CllassD\SCP069Event.cs" />
     <Compile Include="Fuctions\SpRoles\CllassD\SCP181Event.cs" />
+    <Compile Include="Fuctions\SpRoles\CllassD\SCP493Event.cs" />
+    <Compile Include="Fuctions\SpRoles\MTFRoles\NTFHealth.cs" />
+    <Compile Include="Fuctions\SpRoles\MTFRoles\NTFsniper.cs" />
+    <Compile Include="Fuctions\SpRoles\MTFRoles\SCP1143.cs" />
     <Compile Include="Fuctions\SpRoles\Scientists\scpcn08.cs" />
+    <Compile Include="Fuctions\SpRoles\SCPRoles\SCP035Event.cs" />
+    <Compile Include="Fuctions\SpRoles\SCPRoles\SCP550Event.cs" />
+    <Compile Include="Fuctions\SpRoles\Tutroles\SCP999Event.cs" />
     <Compile Include="YYYAPI\MyApi.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="YinNaiConfig.cs" />
     <Compile Include="Database\Methods.cs" />
     <Compile Include="Database\Model\Achieve.cs" />
     <Compile Include="Database\Model\Achievement.cs" />
@@ -138,14 +153,10 @@
     <Compile Include="Fuctions\Items\SCP2818.cs" />
     <Compile Include="Fuctions\Items\SuperMedik.cs" />
     <Compile Include="Fuctions\Map\gatec.cs" />
-    <Compile Include="Fuctions\ObjectClear.cs" />
     <Compile Include="Fuctions\Omega.cs" />
     <Compile Include="Fuctions\Playerlistinfo.cs" />
-    <Compile Include="Fuctions\Playtime.cs" />
-    <Compile Include="Fuctions\Roledefault.cs" />
     <Compile Include="Fuctions\Roundsummary.cs" />
     <Compile Include="Fuctions\SCP524.cs" />
-    <Compile Include="Fuctions\SCPBoost.cs" />
     <Compile Include="Fuctions\SCPMaxHP.cs" />
     <Compile Include="Fuctions\SpRoleManage\RoleManger.cs" />
     <Compile Include="Fuctions\SupplyMap.cs" />
@@ -167,13 +178,11 @@
     <Compile Include="Ui\Model.cs" />
     <Compile Include="Ui\PlayerMain.cs" />
     <Compile Include="User\Achieve\Details\Airlock.cs" />
-    <Compile Include="User\Achieve\Details\Bigboom.cs" />
     <Compile Include="User\Achieve\Details\Box.cs" />
     <Compile Include="User\Achieve\Details\Crazyer.cs" />
     <Compile Include="User\Achieve\Details\Doorbreaker.cs" />
     <Compile Include="User\Achieve\Details\Escapingpocket.cs" />
     <Compile Include="User\Achieve\Details\Fallinggod.cs" />
-    <Compile Include="User\Achieve\Details\Genshin.cs" />
     <Compile Include="User\Achieve\Details\Healer.cs" />
     <Compile Include="User\Achieve\Details\Jumpgod.cs" />
     <Compile Include="User\Achieve\Details\Killbest.cs" />
@@ -189,14 +198,10 @@
     <Compile Include="User\Exp.cs" />
     <Compile Include="User\Permission.cs" />
     <Compile Include="User\StatTrak.cs" />
-    <Compile Include="User\Trackers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="User\Mission\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

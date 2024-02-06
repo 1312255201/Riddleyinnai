@@ -11906,7 +11906,7 @@
         </member>
         <member name="T:Exiled.Events.Patches.Generic.HitboxIdentityCheckFriendlyFire">
             <summary>
-            Patches <see cref="M:HitboxIdentity.CheckFriendlyFire(ReferenceHub,ReferenceHub,System.Boolean)"/>.
+            Patches <see cref="M:HitboxIdentity.IsDamageable(ReferenceHub,ReferenceHub)"/>.
             </summary>
         </member>
         <member name="T:Exiled.Events.Patches.Generic.ProcessDamagePatch">

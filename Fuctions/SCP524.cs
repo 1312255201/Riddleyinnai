@@ -10,6 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exiled.API.Features;
+using Riddleyinnai.Fuctions.Items;
+using Riddleyinnai.Ui;
 using UnityEngine;
 
 namespace Riddleyinnai.Fuctions
@@ -24,13 +27,17 @@ namespace Riddleyinnai.Fuctions
         {
             BeginFlag = false;
         }
+
         public static void ClearObjects()
         {
             if (BeginFlag)
             {
                 try
                 {
-                    Exiled.API.Features.Map.Broadcast(new Exiled.API.Features.Broadcast("<color=#dc143c>[Scp-524]</color>地上有好多好吃的~我不客气啦~", 5));
+                    foreach (var variablPlayer in Player.List)
+                    {
+                        Ui.PlayerMain.Send(variablPlayer,"<color=#0F0>[Scp-524]</color>地上有好多好吃的~我不客气啦~",5,Pos.正中偏下,5);
+                    }
                     Timing.CallDelayed(10f, () =>
                     {
                         foreach(var pickup in Pickup.List)
@@ -40,6 +47,7 @@ namespace Riddleyinnai.Fuctions
                             {
                                 continue;
                             }
+                            pickup.Destroy();
                         }
                     });
                 }
@@ -55,7 +63,7 @@ namespace Riddleyinnai.Fuctions
             if (ev.Id == 3)
             {
                 BeginFlag = true;
-                Exiled.API.Features.Map.Broadcast(new Exiled.API.Features.Broadcast("<color=#dc143c>[Scp-524]</color>我要开始清理这个设施咯", 5));
+               // Exiled.API.Features.Map.Broadcast(new Exiled.API.Features.Broadcast("<color=#dc143c>[Scp-524]</color>我要开始清理这个设施咯", 5));
                 ClearObjects();
             }
         }
@@ -77,14 +85,12 @@ namespace Riddleyinnai.Fuctions
         public static void Register()
         {
             Exiled.Events.Handlers.Map.AnnouncingDecontamination += LczLocked;
-            //Exiled.Events.Handlers.Server.RoundStarted += ClearObjects;
             Exiled.Events.Handlers.Server.WaitingForPlayers += Reset;
             Exiled.Events.Handlers.Server.RespawningTeam += ClearRagDoll;
         }
         public static void Unregister()
         {
             Exiled.Events.Handlers.Map.AnnouncingDecontamination -= LczLocked;
-            //Exiled.Events.Handlers.Server.RoundStarted -= ClearObjects;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= Reset;
             Exiled.Events.Handlers.Server.RespawningTeam -= ClearRagDoll;
         }

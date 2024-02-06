@@ -17238,6 +17238,16 @@
             Gets the <see cref="T:Exiled.API.Enums.AdminToyType"/>.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Toys.AdminToy.Player">
+            <summary>
+            Gets or sets who spawn the Primitive AdminToy.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Toys.AdminToy.Footprint">
+            <summary>
+            Gets or sets the Footprint of the player who spawned the AdminToy.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Toys.AdminToy.Position">
             <summary>
             Gets or sets the position of the toy.
@@ -17260,6 +17270,11 @@
             Higher values reflect smoother movements.
             <br /> - 60 is an ideal value.
             </para>
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Toys.AdminToy.IsStatic">
+            <summary>
+            Gets or sets a value indicating whether IsStatic.
             </summary>
         </member>
         <member name="M:Exiled.API.Features.Toys.AdminToy.Get(AdminToys.AdminToyBase)">
@@ -18263,6 +18278,18 @@
             Settings for primitives.
             </summary>
         </member>
+        <member name="M:Exiled.API.Structs.PrimitiveSettings.#ctor(UnityEngine.PrimitiveType,UnityEngine.Color,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.API.Structs.PrimitiveSettings"/> struct.
+            </summary>
+            <param name="primitiveType">The type of the primitive.</param>
+            <param name="color">The color of the primitive.</param>
+            <param name="position">The position of the primitive.</param>
+            <param name="rotation">The rotation of the primitive.</param>
+            <param name="scale">The scale of the primitive.</param>
+            <param name="spawn">Whether or not the primitive should be spawned.</param>
+            <param name="isStatic">Whether or not the primitive should be static.</param>
+        </member>
         <member name="M:Exiled.API.Structs.PrimitiveSettings.#ctor(UnityEngine.PrimitiveType,UnityEngine.Color,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Exiled.API.Structs.PrimitiveSettings"/> struct.
@@ -18297,6 +18324,11 @@
         <member name="P:Exiled.API.Structs.PrimitiveSettings.Scale">
             <summary>
             Gets the primitive scale.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Structs.PrimitiveSettings.IsStatic">
+            <summary>
+            Gets a value indicating whether or not the primitive should be spawned.
             </summary>
         </member>
         <member name="P:Exiled.API.Structs.PrimitiveSettings.Spawn">

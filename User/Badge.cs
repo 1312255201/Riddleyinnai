@@ -47,6 +47,7 @@ namespace Riddleyinnai.User
         public Player player;
         private float _counter;
         private int loopcount = 0;
+        private bool first;
         private void Update()
         {
             _counter += Time.deltaTime;
@@ -72,9 +73,13 @@ namespace Riddleyinnai.User
                             var ranks = badgemodel.Name.Split('#');
                             if (ranks.Length == 1)
                             {
-                                //不滚动
                                 player.RankColor = Badge.colors.RandomItem();
-                                player.RankName = badgemodel.Name;
+                                //不滚动
+                                if (!first)
+                                {
+                                    player.RankName = badgemodel.Name;
+                                    first = true;
+                                }
                             }
                             else
                             {
@@ -93,13 +98,21 @@ namespace Riddleyinnai.User
                             var ranks = badgemodel.Name.Split('#');
                             if (ranks.Length == 1)
                             {
-                                player.RankColor = badgemodel.Color;
-                                player.RankName = badgemodel.Name;
+                                if (!first)
+                                {
+                                    player.RankColor = badgemodel.Color;
+                                    player.RankName = badgemodel.Name;
+                                    first = true;
+                                }
                             }
                             else
                             {
                                 player.RankName = ranks[loopcount];
-                                player.RankColor = badgemodel.Color;
+                                if (!first)
+                                {
+                                    first = true;
+                                    player.RankColor = badgemodel.Color;
+                                }
                                 loopcount++;
                                 if (loopcount > ranks.Length - 1)
                                 {
@@ -231,7 +244,7 @@ namespace Riddleyinnai.User
                                 {
                                     //不滚动
                                     player.RankColor = colors.RandomItem();
-                                    player.RankName = badgemodel.Name;
+                                    //player.RankName = badgemodel.Name;
                                 }
                                 else
                                 {

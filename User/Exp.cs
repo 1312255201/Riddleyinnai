@@ -17,6 +17,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using PlayerRoles;
+using Riddleyinnai.Fuctions.SpRoleManage;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using YinnaiAPI;
@@ -25,7 +26,7 @@ namespace Riddleyinnai.User
 {
     public class Exp
     {
-        private static int Server_plus = 1;//服务器倍率
+        public static int Server_plus = 1;//服务器倍率
 
         public static int scpnum;
         //缓存信息 用于插件内部读取
@@ -179,7 +180,7 @@ namespace Riddleyinnai.User
         }
         public static float Addexp(string userid, float exp, Exptype exptype, int kills = 1)
         {
-           
+            exp *= Server_plus;
             {
                 if (exp <= 10)
                 {
@@ -489,45 +490,8 @@ namespace Riddleyinnai.User
             var Level = 0;
             model = Methods.GetExp(player.UserId);
             Level = Getlevel(model);
-            if (Level >= 1001)
-            {
-                sprank = "<color=#FF4500>举世无双</color>";
-            }
-            else if (Level >= 801)
-            {
-                sprank = "<color=#FFA500>天下归心</color>";
-            }
-            else if (Level >= 501)
-            {
-                sprank = "<color=#00FF00>势无虚动</color>";
-            }
-            else if (Level >= 301)
-            {
-                sprank = "<color=#00BFFF>威武并昭</color>";
-            }
-            else if (Level >= 201)
-            {
-                sprank = "<color=#9370DB>千军辟易</color>";
-            }
-            else if (Level >= 101)
-            {
-                sprank = "<color=#DDA0DD>怒马迸流</color>";
-            }
-            else if (Level >= 51)
-            {
-                sprank = "<color=#FFC0CB>凤鸾刀舞</color>";
-            }
-            else if (Level >= 0)
-            {
-                sprank = "及锋而试";
-            }
-            else if(Level == -1)
-            {
-                sprank = "<color=#4B0082>神秘来客</color>";
-            }
-            var logintime = Playtime.Get_today_time(player);
-            var str = $"{time} <color=green><b>{player.Nickname}</b></color><b>丨</b>{sprank}<b>丨</b><b>Lv.{Level}</b> 您今日已在线:<b>{logintime.ToString(@"hh\:mm\:ss")}</b> <size=10>测试品质不代表最终品质 <color=red>Beta6.6.6</color></size></voffset></size>";
-            //var str = $"{time} <color=green><b>{player.Nickname}</b></color><b>丨</b>{sprank}<b>丨</b><b>Lv.{Level}</b> 丨 <b>Uid</b>: <b>{model.Uid}</b> <size=10>测试品质不代表最终品质 <color=red>Beta1.1.0</color></size></voffset></size>";
+            sprank = RoleManger.IsRole(player.Id) ? RoleManger.GetRole(player.Id).ToString() : YYYApi.MyApi.TranslateOfRoleType[player.Role.Type];
+            var str = $"{time} <color=green><b>{player.Nickname}</b></color><b>丨</b>{sprank}<b>丨</b><b>Lv.{Level}</b> 玩家群号::<b>875268324</b> <size=10>测试品质不代表最终品质 <color=red>Beta测试版本</color></size></voffset></size>";
             return str;
         }
         public static string GetItemMsg(long EXP)
@@ -564,7 +528,7 @@ namespace Riddleyinnai.User
             }
             else if (Level >= 0)
             {
-                msg = $"您当前等级{Level} 您已获取开局福利:区域总监钥匙卡（萌新保护）";
+                msg = $"您当前等级{Level} 您已获取开局福利:黄卡（萌新保护）";
             }
             else if (Level == -1)
             {
@@ -650,14 +614,14 @@ namespace Riddleyinnai.User
             {
                 Items = new List<ItemType>()
                 {
-                    ItemType.KeycardZoneManager,
+                    ItemType.KeycardScientist,
                 };
             }
             else if (Level == -1)
             {
                 Items = new List<ItemType>()
                 {
-                    ItemType.KeycardZoneManager,
+                    ItemType.KeycardScientist,
                 };
             }
             return Items;

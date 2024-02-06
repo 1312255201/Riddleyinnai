@@ -8,6 +8,8 @@ using Riddleyinnai.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exiled.API.Enums;
+using Riddleyinnai.Fuctions.SpRoleManage;
 
 namespace Riddleyinnai.Ui
 {
@@ -217,9 +219,11 @@ namespace Riddleyinnai.Ui
                     else if (player.Role.Side == Exiled.API.Enums.Side.Scp)
                     {
                         msgshow += "<align=\"right\"><size=75%><b>";
-                        foreach (var p in Player.Get(x => x.IsScp))
+                        foreach (var p in Player.List.Where(x=>RoleManger.GetSide(x.Id) == Side.Scp))
                         {
-                            if (p.Role == RoleTypeId.Scp079)
+                            if (p.Role.Team == Team.SCPs)
+                            {
+                                                            if (p.Role == RoleTypeId.Scp079)
                             {
                                 var level = 1;
                                 float power = 0;
@@ -257,9 +261,36 @@ namespace Riddleyinnai.Ui
                                 scpcount++;
                                 msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + " HS " + "<color=#6699ff>" + p.HumeShield + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
                             }
+                            }
+                            else
+                            {
+                                var str = p.Role.Type.ToString();
+                                var healthcolor = "#66ff66";
+                                if (p.Health <= p.MaxHealth * 0.6f)
+                                {
+                                    healthcolor = "#ffcc99";
+                                }
+                                else if (p.Health <= p.MaxHealth * 0.25f)
+                                {
+                                    healthcolor = "#cc0000";
+                                }
+                                var zone = "";
+                                switch (p.Zone)
+                                {
+                                    case Exiled.API.Enums.ZoneType.Surface: zone = "地表"; break;
+                                    case Exiled.API.Enums.ZoneType.Entrance: zone = "办公"; break;
+                                    case Exiled.API.Enums.ZoneType.LightContainment: zone = "轻收"; break;
+                                    case Exiled.API.Enums.ZoneType.HeavyContainment: zone = "重收"; break;
+                                    default: zone = "未知"; break;
+                                }
+                                linecount++;
+                                scpcount++;
+                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + "  " + "<color=#6699ff>" + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
+                            }
+
                         }
                         var zombies = Player.Get(x => x.Role.Type == RoleTypeId.Scp0492).Count();
-                        if (Player.Get(x => x.Role.Type == RoleTypeId.Scp0492).Count() >= 1)
+                        if (Player.Get(x => x.Role.Type == RoleTypeId.Scp0492).Any())
                         {
                             linecount++;
                             scpcount++;

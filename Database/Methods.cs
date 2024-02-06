@@ -22,12 +22,12 @@ namespace Riddleyinnai.Database
     public sealed class Methods
     {
         public static API YinnaiApi;
-        private static Config config;
+        private static YinNaiConfig _yinNaiConfig;
         private static Dictionary<string,API.BasicInfo> player_info = new Dictionary<string, API.BasicInfo>();
-        public static void Init(Config Oconfig)
+        public static void Init(YinNaiConfig Oconfig)
         {
-            config = Oconfig;
-            YinnaiApi = new API(config.ConfigAPI, config.AuthKey);
+            _yinNaiConfig = Oconfig;
+            YinnaiApi = new API(_yinNaiConfig.ConfigAPI, _yinNaiConfig.AuthKey);
         }
         public static void InitPlayer(Player player)
         {
@@ -68,7 +68,7 @@ namespace Riddleyinnai.Database
         {
             if(player_info.ContainsKey(userid))
             {
-                YinnaiApi.AddExp(userid, (num * player_info[userid].ExpRatio));
+                YinnaiApi.AddExp(userid, (num * player_info[userid].ExpRatio ));
                 player_info[userid].Exp += (num * player_info[userid].ExpRatio);
             }
         }

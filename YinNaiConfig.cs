@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Riddleyinnai
 {
-    public sealed class Config : IConfig
+    public sealed class YinNaiConfig : IConfig
     {
         [Description("是否开启插件")]
         public bool IsEnabled { get; set; } = false;
@@ -40,5 +40,18 @@ namespace Riddleyinnai
         public string ConfigAPI { get; set; } = "";
         [Description("AuthKey")]
         public string AuthKey { get; set; } = "";
+
+        [Description("D9341最少刷新人数")] 
+        public int d9341minnum  { get; set; }= 0;
+        [Description("Scp493最少刷新人数")] 
+        public int scp493minnum  { get; set; }= 0;
+        [Description("Scp069最少刷新人数")] 
+        public int scp069minnum  { get; set; }= 0;
+        [Description("Scp181最少刷新人数")] 
+        public int scp181minnum  { get; set; }= 0;
+        [Description("Scp550最少刷新人数")] 
+        public int scp550minnum  { get; set; }= 0;
+        [Description("Scpcn08最少刷新人数")] 
+        public int scpcn08minnum  { get; set; }= 0;
     }
 }

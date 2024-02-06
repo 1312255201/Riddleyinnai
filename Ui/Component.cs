@@ -365,7 +365,7 @@ namespace Riddleyinnai.Ui
     $"\n<size=25><align=right><color=#ffffff>下次出生阵营:{nextteam}</size></align></size>";
                     
                     msgshow += msg;
-                    msgshow += $"\n<align=right><color=#ffffff>你知道吗:{PlayerMain.Gettips(player)}</color></align>";
+                    msgshow += $"\n<align=right><color=#ffffff>Tips:{PlayerMain.Gettips(player)}</color></align>";
                     msgshow += "\n";
                     msgshow += "\n";
                     msgshow += "\n";

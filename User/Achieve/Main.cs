@@ -1,12 +1,8 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
-using Riddleyinnai.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using ICommand = CommandSystem.ICommand;
 
 namespace Riddleyinnai.User.Achieve

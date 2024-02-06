@@ -29,10 +29,10 @@ namespace Riddleyinnai.Fuctions
             MaxHP[RoleTypeId.Scp106] = Config.HP106;
             MaxHP[RoleTypeId.Scp173] = Config.HP173;
             MaxHP[RoleTypeId.Scp939] = Config.HP939;
-
         }
         private static float GetHP(Player player)
         {
+            return MaxHP[player.Role.Type];
             float hp_default = player.Health;
             float add = MaxHP[player.Role.Type] - hp_default;
             if (add > 0)

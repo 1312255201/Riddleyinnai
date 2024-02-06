@@ -56,7 +56,7 @@ namespace Riddleyinnai.Fuctions
         }
         public static void Roundstart()
         {
-            cor2 = Timing.RunCoroutine(OmegaWarhead());
+          //  cor2 = Timing.RunCoroutine(OmegaWarhead());
         }
         public static IEnumerator<float> Checkescaping()
         {

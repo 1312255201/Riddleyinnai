@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Riddleyinnai.Fuctions.SpRoleManage;
 
 namespace Riddleyinnai.Fuctions.Alloction
 {
@@ -226,10 +227,10 @@ namespace Riddleyinnai.Fuctions.Alloction
             }
             Round.IsLocked = false;
             Log.Info("回合锁已被解除");
-
+            Timing.RunCoroutine(ETC.RenWuFenPei());
             Timing.CallDelayed(5f, () =>
             {
-                var l = Player.List.Where(x => x.Role == RoleTypeId.Tutorial);
+                var l = Player.List.Where(x => x.Role == RoleTypeId.Tutorial && !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP550) && !RoleManger.IsRole(x.Id));
                 if (l != null && l.Any())
                 {
                     foreach (var item in l)
