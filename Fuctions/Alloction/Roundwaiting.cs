@@ -47,7 +47,7 @@ namespace Riddleyinnai.Fuctions.Alloction
         }
         public static void WaitingPlayers()
         {
-            obj = MapEditorReborn.API.Features.ObjectSpawner.SpawnSchematic("ClassLobby", new Vector3(0, 1000, 0));
+            //obj = MapEditorReborn.API.Features.ObjectSpawner.SpawnSchematic("ClassLobby", new Vector3(0, 1000, 0));
             CustomMessage = $"<size=35><color=red>捡起角色模型前的硬币即可申请角色</color></size>\n";
             try
             {
@@ -72,18 +72,6 @@ namespace Riddleyinnai.Fuctions.Alloction
                 {
                     ev.Player.Role.Set(RoleTypeId.Tutorial);
                     ev.Player.AddItem(ItemType.Coin);
-/*                    Timing.CallDelayed(0.5f, () =>
-                    {
-                        ev.Player.Teleport(new Vector3(26.068f, 981.777f, -39.599f));
-                        Timing.CallDelayed(1f, () =>
-                        {
-                            if (Vector3.Distance(ev.Player.Position, new Vector3(26.068f, 981.777f, -39.599f)) >= 10)
-                            {
-                                ev.Player.Teleport(new Vector3(26.068f, 981.777f, -39.599f));
-                            }
-                        });
-
-                    });*/
                 });
             }
         }
@@ -95,36 +83,8 @@ namespace Riddleyinnai.Fuctions.Alloction
                 ev.Player.ClearInventory();
             }
         }
-        public static IEnumerator<float> Teleports()
-        {
-            while (!Round.IsEnded)
-            {
-                foreach (Player player in Player.List)
-                {
-                    if (Vector3.Distance(new Vector3(-80.31f, 984.75f, -47.28f), player.Position) < 5)
-                    {
-                        player.Position = new Vector3(-48.78f, 989.62f, -49.73f);
-                    }
-                    if (Vector3.Distance(new Vector3(-55.07f, 989.62f, -49.73f), player.Position) < 5)
-                    {
-                        player.Position = new Vector3(-80.31f, 984.65f, -53.48f);
-                    }
-                }
-                yield return Timing.WaitForSeconds(1f);
-            }
-            yield break;
-        }
         public static void RoundStart()
         {
-            //这里处理申请
-            Round.IsLocked = true;
-            Timing.CallDelayed(2f, () =>
-            {
-                Allocation.Start();
-                Log.Info("系统分配已启动");
-                obj.Destroy();
-            });
-
             if (lobbyTimer.IsRunning)
             {
                 Timing.KillCoroutines(lobbyTimer);

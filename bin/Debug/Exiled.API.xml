@@ -12098,6 +12098,24 @@
             <param name="player">The player found or <see langword="null"/> if not found.</param>
             <returns>A boolean indicating whether or not a player was found.</returns>
         </member>
+        <member name="M:Exiled.API.Features.Player.GetProcessedData(System.ArraySegment{System.String},System.Int32,System.String[]@,System.Boolean)">
+            <summary>
+            Gets an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all players processed based on the arguments specified.
+            </summary>
+            <param name="args">The array segment of strings representing the input arguments to be processed.</param>
+            <param name="startIndex">The starting index within the array segment.</param>
+            <param name="newargs">Contains the updated arguments after processing.</param>
+            <param name="keepEmptyEntries">Determines whether empty entries should be kept in the result.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing the processed players.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.Player.GetProcessedData(System.ArraySegment{System.String},System.Int32)">
+            <summary>
+            Gets an <see cref="T:System.Collections.Generic.IEnumerable`1"/> containing all players processed based on the arguments specified.
+            </summary>
+            <param name="args">The array segment of strings representing the input arguments to be processed.</param>
+            <param name="startIndex">The starting index within the array segment.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1"/> representing the processed players.</returns>
+        </member>
         <member name="M:Exiled.API.Features.Player.AddReservedSlot(System.String)">
             <summary>
             Adds a player's UserId to the list of reserved slots.

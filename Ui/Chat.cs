@@ -156,7 +156,7 @@ namespace Riddleyinnai.Ui
                 PlayerMain.Send(Player.List.Where(x => x.Role.Team == pl.Role.Team || x.IsOverwatchEnabled).ToList(), $"<color={msgcolor}>{pl.Nickname}</color>:{msg}", 5, Pos.屏幕正中左边五行);
                 response = "成功发送了信息";
 
-                foreach (var item in Player.List)
+                foreach (var item in Player.List.Where(x => x.Role.Team == pl.Role.Team || x.IsOverwatchEnabled).ToList())
                 {
                     item.SendConsoleMessage($"[阵营聊天]" + $"{pl.Nickname}:{msg}", "white");
                 }
@@ -167,7 +167,7 @@ namespace Riddleyinnai.Ui
                 PlayerMain.Send(Player.List.Where(x => x.Role.Team == pl.Role.Team || x.IsOverwatchEnabled).ToList(), $"<color={msgcolor}>{pl.Nickname}</color>:{msg}", 5, Pos.屏幕正中左边五行);
                 response = "成功发送了信息";
 
-                foreach (var item in Player.List)
+                foreach (var item in Player.List.Where(x => x.Role.Team == pl.Role.Team || x.IsOverwatchEnabled).ToList())
                 {
                     item.SendConsoleMessage($"[阵营聊天]" + $"{pl.Nickname}:{msg}", "white");
                 }

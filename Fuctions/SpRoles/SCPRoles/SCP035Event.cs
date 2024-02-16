@@ -2,6 +2,7 @@
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
+using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp096;
 using Exiled.Events.EventArgs.Server;
@@ -24,17 +25,19 @@ public class SCP035Event
             Pos.正中偏下, 5);
         var pos = RoleTypeId.ClassD.GetRandomSpawnLocation().Position;
         var roletmp = RoleTypeId.ClassD;
-        switch (new System.Random().Next(1,4))
+        switch (new System.Random().Next(1,6))
         {
             case 1:
+            case 2:
                 pos = RoleTypeId.ClassD.GetRandomSpawnLocation().Position;
                 roletmp = RoleTypeId.ClassD;
                 break;
-            case 2:
+            case 3:
+            case 4:
                 pos = RoleTypeId.Scientist.GetRandomSpawnLocation().Position;
                 roletmp = RoleTypeId.Scientist;
                 break;
-            case 3:
+            case 5:
                 pos = RoleTypeId.FacilityGuard.GetRandomSpawnLocation().Position;
                 roletmp = RoleTypeId.FacilityGuard;
                 player.AddItem(ItemType.KeycardGuard);
@@ -52,6 +55,8 @@ public class SCP035Event
             player.Position = pos;
         });
         checktiming = Timing.RunCoroutine(CheckTiming(player,roletmp));
+        Scp173Role.TurnedPlayers.Add(player);
+        Scp096Role.TurnedPlayers.Add(player);
     }
 
     private static void OnDropingItem(DroppingItemEventArgs ev)
@@ -110,7 +115,7 @@ public class SCP035Event
         {
             if (RoleManger.IsRole(ev.Attacker.Id, RoleManger.RoleName.SCP035))
             {
-                Ui.PlayerMain.Send(ev.Player, "你被<color=#0F0>[SCP-035]</color>n击杀", 5, Pos.正中偏下, 5);
+                Ui.PlayerMain.Send(ev.Player, "你被<color=#F00>[SCP-035]</color>击杀", 5, Pos.正中偏下, 5);
             }
         }
     }

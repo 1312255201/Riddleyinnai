@@ -35,7 +35,7 @@ namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
             }
             if(arguments.Count < 1)
             {
-                player.RemoteAdminMessage("使用教程\nspawnscp [角色] [id] id可不填默认为自己\n角色列表scp035 ntfsniper ntfhealther scp550 scp2490 scp1143 d9341 scp069 scp181 scp493 scpcn08");
+                player.RemoteAdminMessage("使用教程\nspawnscp [角色] [id] id可不填默认为自己\n角色列表scp682 scp035 ntfsniper ntfhealther scp550 scp2490 scp1143 d9341 scp069 scp181 scp493 scpcn08");
                 response = "参数不足";
                 return false;
             }
@@ -48,6 +48,9 @@ namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
                 }
                 switch(arguments.At(0))
                 {
+                    case "scp682":
+                        Scp682Event.SpawnAScp682(awaplayer);
+                        break;
                     case "scp999":
                         SCP999Event.SpawnAScp999(awaplayer);
                         break;

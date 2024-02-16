@@ -23,7 +23,7 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
                 player.Role.Set(RoleTypeId.NtfPrivate);
             }
             MyApi.SetNickName("九尾狐医疗兵", "cyan", player);
-            Ui.PlayerMain.Send(player, "你是<color=#0F0>[九尾狐医疗兵]</color>手持医疗包10s将会将其转化为高级医疗包，高级医疗包可以使用5次。", 5, Pos.正中偏下,
+            Ui.PlayerMain.Send(player, ".你是[九尾狐医疗兵]你可以手持[普通医疗包]制作[高级医疗包]\n2.制作时间为30s，逃生点内10s\n3.你出生携带两个[高级医疗包]，可使用五次", 5, Pos.正中偏下,
                 5);
             if (player.Role.Type != RoleTypeId.NtfSergeant)
             {
@@ -34,8 +34,8 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
             {
                 player.ClearInventory();
                 player.AddItem(ItemType.GunCOM18);
-                player.AddItem(ItemType.Medkit);
-                player.AddItem(ItemType.Medkit);
+                HealthItem.Add(player.AddItem(ItemType.Medkit).Serial,0);
+                HealthItem.Add(player.AddItem(ItemType.Medkit).Serial,0);
                 player.AddItem(ItemType.ArmorLight);
                 player.AddItem(ItemType.KeycardMTFOperative);
                 player.AddItem(ItemType.Radio);
@@ -62,7 +62,7 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
                             if (!HealthItem.ContainsKey(item.Serial))
                             {
                                 HealthItem.Add(item.Serial, 0);
-                                Ui.PlayerMain.Send(player, "你是<color=#0F0>[九尾狐医疗兵]</color>你已经将这个血包转化为了高级血包。", 5, Pos.正中偏下,
+                                Ui.PlayerMain.Send(player, "你是<color=#0F0>[九尾狐医疗兵]</color>你已经将这个血包转化为了高级医疗包。", 5, Pos.正中偏下,
                                     5);
                                 break;
                             }
@@ -70,7 +70,20 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
                     }
                     else
                     {
-                        time = 0;
+                        player.ClearBroadcasts();
+                        player.Broadcast(1, time.ToString());
+                        if (time >= 30)
+                        {
+                            time = 0;
+                            if (!HealthItem.ContainsKey(item.Serial))
+                            {
+                                HealthItem.Add(item.Serial, 0);
+                                Ui.PlayerMain.Send(player, "你是<color=#0F0>[九尾狐医疗兵]</color>你已经将这个血包转化为了高级医疗包。", 5, Pos.正中偏下,
+                                    5);
+                                item.Scale = Vector3.one * 1.5f;
+                                break;
+                            }
+                        }
                     }
                 }
 
@@ -80,24 +93,38 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
         {
             if (RoleManger.IsRole(ev.Player.Id,RoleManger.RoleName.九尾狐医疗兵))
             {
-                if (ev.Item.Type == ItemType.Medkit)
+                if(ev.Item != null)
                 {
-                    Timing.RunCoroutine(CheckTiming(ev.Player, ev.Item));
+                    if (ev.Item.Type == ItemType.Medkit)
+                    {
+                        Timing.RunCoroutine(CheckTiming(ev.Player, ev.Item));
+                    }
                 }
             }
 
+            if (ev.Item != null)
+            {
+                if(HealthItem.ContainsKey(ev.Item.Serial))
+                {
+                    Ui.PlayerMain.Send(ev.Player, "<color=#81CAFF>[高级医疗包]</color>剩余" + (5-  HealthItem[ev.Item.Serial])+ "次"  , 5, Pos.正中偏下,
+                        5);
+                } 
+            }
         }
         private static void OnPlayerUsingItem(UsingItemEventArgs ev)
         {
             if (HealthItem.ContainsKey(ev.Item.Serial))
-            {
+            {   
                 HealthItem[ev.Item.Serial]++;
                 if (HealthItem[ev.Item.Serial] <= 4)
                 {
-                    ev.IsAllowed = false;
-                    ev.Player.UseItem(ItemType.Medkit);
-                    Ui.PlayerMain.Send(ev.Player, "<color=#0F0>[高级血包]</color>使用成功。", 5, Pos.正中偏下,
-                        5);
+                    Timing.CallDelayed(0.5f, () =>
+                    {
+                        ev.IsAllowed = false;
+                        ev.Player.UseItem(ItemType.Medkit);
+                        Ui.PlayerMain.Send(ev.Player, "<color=#81CAFF>[高级医疗包]</color>剩余" + (5-  HealthItem[ev.Item.Serial])+ "次"  , 5, Pos.正中偏下,
+                            5);
+                    });
                 }
                 else
                 {
@@ -109,7 +136,7 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
         {
             if(HealthItem.ContainsKey(ev.Pickup.Serial))
             {
-                Ui.PlayerMain.Send(ev.Player, "你捡起了<color=#0F0>[高级血包]</color>一共可以使用五次当前已使用"+ HealthItem[ev.Pickup.Serial] +"次", 5, Pos.正中偏下,
+                Ui.PlayerMain.Send(ev.Player, "<color=#81CAFF>[高级医疗包]</color>剩余" + (5-  HealthItem[ev.Pickup.Serial])+ "次"  , 5, Pos.正中偏下,
                     5);
             }
         }

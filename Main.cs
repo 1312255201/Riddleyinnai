@@ -24,7 +24,7 @@ namespace Riddleyinnai
     public class Main : Plugin<YinNaiConfig>
     {
         public override string Name => "迷子音奈主插件";
-        public override string Author => "Niruri";
+        public override string Author => "1312255201";
         public override Version RequiredExiledVersion => new Version(7, 2, 0);
         public override Version Version => new Version(1, 0, 0);
         public override PluginPriority Priority => PluginPriority.Highest;
@@ -91,7 +91,7 @@ namespace Riddleyinnai
                     Misc.SCPRecovery.Register();
 
                     Ui.PlayerMain.Register();
-                    
+                    Scp682Event.Reg();
                     
                     User.Achieve.Main.Register();
                     User.Achieve.Details.Box.Register();
@@ -132,17 +132,20 @@ namespace Riddleyinnai
                     LieSheDan.Reg();
                     SCP2818.Register();
                     SCP550Event.Register();
-                    SuperMedik.Register();
+                   // SuperMedik.Register();
                     SCP1143.Register();
                     ILoop.Register();
                     JuJiQiang.Reg();
+                    Log.Info("ETC外部执行");
                     ETC.Register();
+                    Scp127.Reg();
                     SCP2490Event.Register();
                     exception = null;
                     return true;
                 }
                 catch (Exception ex)
                 {
+                    Log.Info(ex.Message);
                     exception = ex;
                     return false;
                 }
@@ -174,6 +177,7 @@ namespace Riddleyinnai
                     User.Achieve.Details.Airlock.Unregister();
                     User.Achieve.Details.Box.Unregister();
                     User.Achieve.Details.Crazyer.Unregister();
+                    Scp682Event.UnReg();
                     User.Achieve.Details.Doorbreaker.Unregister();
                     User.Achieve.Details.Escapingpocket.Unregister();
                     User.Achieve.Details.Fallinggod.Unregister();
@@ -191,6 +195,7 @@ namespace Riddleyinnai
                     User.Exp.Unregister();
                     User.Permission.Unregister();
                     User.StatTrak.Unregister();
+                    Scp127.UnReg();
                     D9341Events.UnRegister();
                     SCP181Event.UnRegister();
                     LieSheDan.UnReg();

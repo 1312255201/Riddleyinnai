@@ -49,16 +49,15 @@ namespace Riddleyinnai.Ui
         private static List<string> tipslist = new List<string>()
         {
             "人被杀，就会死",
-            "游戏中常规互动按键为E",
-            "回合进行20min会强制启动alpha核弹",
-            "MTF阵营可以在Omega弹头启动后撤离设施",
+            "狙击枪和M500的威力巨大，不要让它落到敌人手中",
+            "25分钟系统核弹，注意时间",
             "SCP1853和207不能同时使用！",
-            "049能够一击毙命",
+            "049不能够一击毙命",
             "按～打开控制台输入.bc 和内容即可开始公屏聊天",
-            "SCP330一条命仅能拾取两颗",
-            "939存活时能够使队友与人类进行交流",
-            "173使用F技能可额外恢复生命值",
-            "049—2是具有一定威胁性的，如果让它吞噬足够的尸体……"
+            "SCP330只能拿两颗！拜托！",
+            "九尾狐医疗兵可以制作医疗包，前往逃生点会更快",
+            "绿色糖果可以抵挡气团、花生酱、3114扼喉、106腐蚀、207损伤",
+            "团队的力量来自于每个人的努力，只有团结一心，才能战胜困难，取得更大的成功"
         };
         private static Dictionary<string, string> Tips_dic = new Dictionary<string, string>();
         public static string Gettips(Player player)

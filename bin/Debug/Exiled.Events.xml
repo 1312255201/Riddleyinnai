@@ -4460,15 +4460,12 @@
             Contains all information before spawning a player ragdoll.
             </summary>
         </member>
-        <member name="M:Exiled.Events.EventArgs.Player.SpawningRagdollEventArgs.#ctor(PlayerRoles.Ragdolls.RagdollData,PlayerStatsSystem.DamageHandlerBase,System.Boolean)">
+        <member name="M:Exiled.Events.EventArgs.Player.SpawningRagdollEventArgs.#ctor(PlayerRoles.Ragdolls.RagdollData,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Exiled.Events.EventArgs.Player.SpawningRagdollEventArgs" /> class.
             </summary>
             <param name="info">
             <inheritdoc cref="P:Exiled.Events.EventArgs.Player.SpawningRagdollEventArgs.Info" />
-            </param>
-            <param name="damageHandlerBase">
-            <inheritdoc cref="P:Exiled.Events.EventArgs.Player.SpawningRagdollEventArgs.DamageHandlerBase" />
             </param>
             <param name="isAllowed">
             <inheritdoc cref="P:Exiled.Events.EventArgs.Player.SpawningRagdollEventArgs.IsAllowed" />
@@ -11347,6 +11344,9 @@
             <summary>
             Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049ResurrectAbility.ServerComplete" />.
             Adds the <see cref="P:Exiled.Events.Handlers.Scp049.FinishingRecall" /> event.
+            Fix bug than Overwatch can get force respawn by Scp049
+            Bug reported to NW https://trello.com/c/V0uHP2eV/5745-overwatch-overwatch-can-get-respawned-by-scp-049.
+            The fix is directly inside the <see cref="T:Exiled.Events.EventArgs.Scp049.FinishingRecallEventArgs"/>.
             </summary>
         </member>
         <member name="T:Exiled.Events.Patches.Events.Scp049.SendingCall">
@@ -11736,6 +11736,13 @@
             Fix for chamber lists weren't cleared.
             </summary>
         </member>
+        <member name="T:Exiled.Events.Patches.Fixes.NWFixScp096BreakingDoor">
+            <summary>
+            Patches the <see cref="M:PlayerRoles.PlayableScps.Scp096.Scp096HitHandler.CheckDoorHit(UnityEngine.Collider)"/> delegate.
+            Fixes open doors getting easily broke.
+            Bug reported to NW (https://trello.com/c/6Nz7Isjm/4637-scp096-easily-breaking-opened-doors).
+            </summary>
+        </member>
         <member name="T:Exiled.Events.Patches.Fixes.PositionSpawnScp0492Fix">
             <summary>
             Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049ResurrectAbility.ServerComplete"/> delegate.
@@ -11763,6 +11770,30 @@
             <summary>
             Patches <see cref="M:InventorySystem.Items.Firearms.Attachments.AttachmentsServerHandler.SetupProvidedWeapon(ReferenceHub,InventorySystem.Items.ItemBase)"/>.
             Fixes if a plugin gives you an weapon that you do not have ammo for, your attachments will not correctly appear on said weapon.
+            </summary>
+        </member>
+        <member name="T:Exiled.Events.Patches.Generic.Scp079API.AddRespawnTargetMultiplierConfig">
+            <summary>
+            Patches <see cref="M:RoundSummary.ServerOnRespawned(Respawning.SpawnableTeamType,System.Collections.Generic.List{ReferenceHub})"/>.
+            Adds the <see cref="F:RoundSummary.RespawnTargetMultiplier" /> as NW config.
+            </summary>
+        </member>
+        <member name="T:Exiled.Events.Patches.Generic.Scp079API.CallAbilityDuration">
+            <summary>
+            Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049CallAbility.ServerProcessCmd(Mirror.NetworkReader)"/>.
+            Adds the <see cref="P:Exiled.API.Features.Roles.Scp049Role.CallAbilityDuration" /> property.
+            </summary>
+        </member>
+        <member name="T:Exiled.Events.Patches.Generic.Scp079API.SenseAbilityBaseCooldown">
+            <summary>
+            Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049SenseAbility.ServerProcessKilledPlayer(ReferenceHub)"/>.
+            Adds the <see cref="P:Exiled.API.Features.Roles.Scp049Role.SenseAbilityBaseCooldown" /> property.
+            </summary>
+        </member>
+        <member name="T:Exiled.Events.Patches.Generic.Scp079API.SenseAbilityReducedCooldown">
+            <summary>
+            Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049SenseAbility.ServerLoseTarget"/>.
+            Adds the <see cref="P:Exiled.API.Features.Roles.Scp049Role.SenseAbilityReducedCooldown" /> property.
             </summary>
         </member>
         <member name="T:Exiled.Events.Patches.Generic.AirlockListAdd">
@@ -11963,24 +11994,6 @@
         <member name="T:Exiled.Events.Patches.Generic.RoomListRemove">
             <summary>
             Patches <see cref="M:MapGeneration.RoomIdentifier.OnDestroy"/>.
-            </summary>
-        </member>
-        <member name="T:Exiled.Events.Patches.Generic.Scp079API.CallAbilityDuration">
-            <summary>
-            Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049CallAbility.ServerProcessCmd(Mirror.NetworkReader)"/>.
-            Adds the <see cref="P:Exiled.API.Features.Roles.Scp049Role.CallAbilityDuration" /> property.
-            </summary>
-        </member>
-        <member name="T:Exiled.Events.Patches.Generic.Scp079API.SenseAbilityBaseCooldown">
-            <summary>
-            Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049SenseAbility.ServerProcessKilledPlayer(ReferenceHub)"/>.
-            Adds the <see cref="P:Exiled.API.Features.Roles.Scp049Role.SenseAbilityBaseCooldown" /> property.
-            </summary>
-        </member>
-        <member name="T:Exiled.Events.Patches.Generic.Scp079API.SenseAbilityReducedCooldown">
-            <summary>
-            Patches <see cref="M:PlayerRoles.PlayableScps.Scp049.Scp049SenseAbility.ServerLoseTarget"/>.
-            Adds the <see cref="P:Exiled.API.Features.Roles.Scp049Role.SenseAbilityReducedCooldown" /> property.
             </summary>
         </member>
         <member name="T:Exiled.Events.Patches.Generic.Scp079Scan">

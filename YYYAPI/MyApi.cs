@@ -2,11 +2,29 @@
 using System.Linq;
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.API.Features.Pickups;
 using MEC;
 using PlayerRoles;
+using Riddleyinnai.Fuctions.Items;
 
 namespace Riddleyinnai.YYYApi;
 
+public static class MyApiStatic
+{
+    public static bool isSpesialItem(this Pickup pickup)
+    {
+        if (SCP2818.scp2818id.Contains(pickup.Serial) || SCP2818.scp2818aid.Contains(pickup.Serial) ||
+            DaMa.DaMaList.Contains(pickup.Serial) || JuJiQiang.items.Contains(pickup.Serial) ||
+            Scp127.items.ContainsKey(pickup.Serial))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 public class MyApi
 {
     public static Player GetRamdomDeadPlayer()
@@ -34,8 +52,8 @@ public class MyApi
         {RoleTypeId.FacilityGuard,"设施保安" },
         {RoleTypeId.ChaosConscript,"混沌征召兵" },
         {RoleTypeId.ChaosMarauder,"混沌掠夺者" },
-        {RoleTypeId.ChaosRepressor,"混沌镇压者" },
-        {RoleTypeId.ChaosRifleman,"混沌抢手" },
+        {RoleTypeId.ChaosRepressor,"混沌压制者" },
+        {RoleTypeId.ChaosRifleman,"混沌步枪手" },
         {RoleTypeId.Scp096,"SCP-096" },
         {RoleTypeId.Scp049,"SCP-049" },
         {RoleTypeId.Scp173,"SCP-173" },

@@ -2,6 +2,7 @@
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
 using Exiled.API.Features;
+using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
 using Interactables.Interobjects;
@@ -23,7 +24,7 @@ public class SCP550Event
         player.Role.Set(RoleTypeId.Tutorial);
         SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP550,"",Side.Scp,false);
         YYYApi.MyApi.SetNickName("SCP-550","red",player);
-        Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FF3300>[SCP-550]</color>\n<color=#FFFFCC>1.超越</color><color=#FF3333>100hp血时</color><color=#FFFFCC>你无法拾取任何医疗物品，并且永远无法打开AB大门以及914大门</color>\n<color=#FFFFCC>2.你</color><color=#FF3333>只能</color><color=#FFFFCC>拾取与使用钥匙卡、手枪、投掷物、 所有医疗物、SCP268（帽子），以及你拥有50%减伤</color>\n<color=#FFFFCC>3.你攻击敌人可以</color><color=#FF3333>少量回血</color>",15,Pos.正中偏下,5);
+        Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FF3300>[SCP-550]</color>\n1.特殊收容措施已失效\u2586\u2586-2\u25866\u2586，你的目标是与其他SCP合作侵占整个设施\n2.你只能使用钥匙卡、手枪、冲锋枪、投掷物、医疗品、SCP268\n3.你有50%的子弹抗性，攻击敌人恢复少量HP与AHP"/*\n4.你的宿敌可能后方逃生点\n*/,15,Pos.正中偏下,5);
         Timing.CallDelayed(0.3f, () =>
         {
             player.SetAmmo(AmmoType.Nato9, 135);
@@ -40,6 +41,8 @@ public class SCP550Event
             player.ChangeAppearance(RoleTypeId.ChaosRifleman);
         });
         Timing.RunCoroutine(CheckTiming(player));
+        Scp173Role.TurnedPlayers.Add(player);
+        Scp096Role.TurnedPlayers.Add(player);
     }
     private static IEnumerator<float> CheckTiming(Player player)
     {

@@ -20,6 +20,8 @@ namespace Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
 public class SCP2490Event
 {
     public static bool scp2490spawnyes;
+    public static bool coincd;
+    public static bool flashcd;
     public static void SpawnAScp2490(Player player)
     {
         player.Role.Set(RoleTypeId.ChaosRifleman);
@@ -86,43 +88,60 @@ public class SCP2490Event
             if (ev.Item.Type == ItemType.Coin)
             {
                 ev.IsAllowed = false;
-                List<Player> awa = new List<Player>();
-                List<Player> awa2 = new List<Player>();
-                foreach (var pl in Player.List)
+                if (!coincd)
                 {
-                    if (pl.IsAlive && pl.Role.Team != ev.Player.Role.Team && pl.Role.Type != RoleTypeId.ClassD)
+                    coincd = true;
+                    Timing.CallDelayed(60f, () =>
                     {
-                        awa.Add(pl);
-                    }
-                    awa2 = RandomSort(awa);
-                    if (awa2.Any())
+                        coincd = false;
+                    });
+                    List<Player> awa = new List<Player>();
+                    List<Player> awa2 = new List<Player>();
+                    foreach (var pl in Player.List)
                     {
-                        ev.Player.Position = awa2.First().Position + Vector3.up;
+                        if (pl.IsAlive && pl.Role.Team != ev.Player.Role.Team && pl.Role.Type != RoleTypeId.ClassD)
+                        {
+                            awa.Add(pl);
+                        }
+                        awa2 = RandomSort(awa);
+                        if (awa2.Any())
+                        {
+                            ev.Player.Position = awa2.First().Position + Vector3.up;
+                        }
                     }
                 }
+
             }
 
             if (ev.Item.Type == ItemType.Flashlight)
             {
                 ev.IsAllowed = false;
-                List<Player> awa = new List<Player>();
-                List<Player> awa2 = new List<Player>();
-                foreach (var pl in Player.List)
+                if (!flashcd)
                 {
-                    if (pl.IsAlive && pl.Role.Team == ev.Player.Role.Team && pl.Role.Type == RoleTypeId.ClassD)
+                    flashcd = true;
+                    Timing.CallDelayed(60f, () =>
                     {
-                        awa.Add(pl);
-                    }
-                    awa2 = RandomSort(awa);
-                    if (awa2.Any())
+                        flashcd = false;
+                    });
+                    List<Player> awa = new List<Player>();
+                    List<Player> awa2 = new List<Player>();
+                    foreach (var pl in Player.List)
                     {
-                        ev.Player.Position = awa2.First().Position + Vector3.up;
-                    }
-                    else
-                    {
-                        if (!Warhead.IsDetonated)
+                        if (pl.IsAlive && pl.Role.Team == ev.Player.Role.Team && pl.Role.Type == RoleTypeId.ClassD)
                         {
-                            ev.Player.Position = GetRandomRoom().Position + Vector3.up;
+                            awa.Add(pl);
+                        }
+                        awa2 = RandomSort(awa);
+                        if (awa2.Any())
+                        {
+                            ev.Player.Position = awa2.First().Position + Vector3.up;
+                        }
+                        else
+                        {
+                            if (!Warhead.IsDetonated)
+                            {
+                                ev.Player.Position = GetRandomRoom().Position + Vector3.up;
+                            }
                         }
                     }
                 }
@@ -157,8 +176,8 @@ public class SCP2490Event
     }
     private static bool NoContainsRadomRoom(Room room)
     {
-        return room.Type != RoomType.EzIntercom && room.Type != RoomType.EzShelter && room.Type != RoomType.HczTesla &&
-               room.Type != RoomType.Pocket && room.Type != RoomType.EzCollapsedTunnel;
+        return room.Type != RoomType.EzIntercom && room.Type != RoomType.EzShelter && room.Type != RoomType.Lcz173 && room.Type != RoomType.HczTesla &&
+               room.Type != RoomType.Pocket && room.Type != RoomType.Hcz939 && room.Type != RoomType.EzCollapsedTunnel && room.Type != RoomType.HczTestRoom;
     }
     public static IEnumerator<float> SetCd(Player player)
     {

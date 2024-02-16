@@ -491,7 +491,7 @@ namespace Riddleyinnai.User
             model = Methods.GetExp(player.UserId);
             Level = Getlevel(model);
             sprank = RoleManger.IsRole(player.Id) ? RoleManger.GetRole(player.Id).ToString() : YYYApi.MyApi.TranslateOfRoleType[player.Role.Type];
-            var str = $"{time} <color=green><b>{player.Nickname}</b></color><b>丨</b>{sprank}<b>丨</b><b>Lv.{Level}</b> 玩家群号::<b>875268324</b> <size=10>测试品质不代表最终品质 <color=red>Beta测试版本</color></size></voffset></size>";
+            var str = $"{time} <color=green><b>{player.Nickname}</b></color><b>丨</b>{sprank}<b>丨</b><b>Lv.{Level}</b> 玩家群号::<b>875268324</b> <size=10>测试品质不代表最终品质 <color=red>Beta测试版本 TPS:{Server.Tps}</color></size></voffset></size>";
             return str;
         }
         public static string GetItemMsg(long EXP)

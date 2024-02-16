@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Exiled.API.Features;
 using Riddleyinnai.Fuctions.Items;
 using Riddleyinnai.Ui;
+using Riddleyinnai.YYYApi;
 using UnityEngine;
 
 namespace Riddleyinnai.Fuctions
@@ -42,7 +43,7 @@ namespace Riddleyinnai.Fuctions
                     {
                         foreach(var pickup in Pickup.List)
                         {
-                            if(pickup.Type.IsScp() || pickup.Type.IsThrowable() || pickup.Type == ItemType.ArmorHeavy || pickup.Type == ItemType.GunFRMG0 || pickup.Type == ItemType.GunLogicer
+                            if(pickup.isSpesialItem() || pickup.Type.IsScp() || pickup.Type.IsThrowable() || pickup.Type == ItemType.ArmorHeavy || pickup.Type == ItemType.GunFRMG0 || pickup.Type == ItemType.GunLogicer
                             || pickup.Type == ItemType.Medkit || pickup.Type == ItemType.KeycardO5 || pickup.Type == ItemType.KeycardFacilityManager)
                             {
                                 continue;

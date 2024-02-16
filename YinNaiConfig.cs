@@ -53,5 +53,20 @@ namespace Riddleyinnai
         public int scp550minnum  { get; set; }= 0;
         [Description("Scpcn08最少刷新人数")] 
         public int scpcn08minnum  { get; set; }= 0;
+
+        [Description("SCP999最少刷新人数")] 
+        public int scp999minmnum { get; set; } = 0;
+        [Description("SCP999最少刷新人数")] 
+        public int scp682minnum { get; set; } = 0;
+        [Description("SCP035最少刷新人数")] 
+        public int scp035minnum { get; set; } = 0;
+        [Description("九尾狐医疗兵最少刷新人数")] 
+        public int ntfheltherminnum { get; set; } = 0;
+        [Description("九尾狐医疗兵最少刷新人数")] 
+        public int ntfsniperminnum { get; set; } = 0;
+        [Description("SCP3114最小刷新人数")] 
+        public int scp3114numnum { get; set; } = 0;
+        [Description("scp2490最小刷新人数")] 
+        public int scp2490minnum { get; set; } = 0;
     }
 }

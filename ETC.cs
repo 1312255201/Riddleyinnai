@@ -13,6 +13,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features.DamageHandlers;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Pickups;
+using Exiled.API.Features.Roles;
 using PlayerRoles;
 using PlayerStatsSystem;
 using Riddleyinnai.Fuctions.Items;
@@ -49,7 +50,21 @@ namespace Riddleyinnai
             //伤害量处理
             if (ev.Attacker != null)
             {
+                if (ev.Attacker.CurrentItem != null && Scp127.items.ContainsKey(ev.Attacker.CurrentItem.Serial))
+                {
+                    if (ev.DamageHandler.Type.IsWeapon())
+                    {
+                        ev.Amount *= 1.5f;
+                    }
+                }
 
+                if (RoleManger.IsRole(ev.Attacker.Id, RoleManger.RoleName.SCP682))
+                {
+                    if (Scp682Event.fuhuotime >= 4)
+                    {
+                        ev.Amount *= 1.2f;
+                    }
+                }
                 if (ev.Attacker.CurrentItem != null && LieSheDan.items.Contains(ev.Attacker.CurrentItem.Serial))
                 {
                     if (ev.Amount != 0)
@@ -59,9 +74,12 @@ namespace Riddleyinnai
                 }
                 if (ev.Attacker.CurrentItem != null && JuJiQiang.items.Contains(ev.Attacker.CurrentItem.Serial))
                 {
-                    if (ev.Amount != 0)
+                    if (ev.DamageHandler.Type == DamageType.E11Sr)
                     {
-                        ev.Amount *= 10;
+                        if (ev.Amount != 0)
+                        {
+                            ev.Amount *= 10;
+                        }
                     }
                 }
                 if (ev.Attacker.CurrentItem != null)
@@ -138,7 +156,24 @@ namespace Riddleyinnai
                     ev.Amount *= 0.5f;
                 }
             }
-
+            if (ev.Amount > 0)
+            {
+                if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP682))
+                {
+                    if (Scp682Event.fuhuotime == 3)
+                    {
+                        ev.Amount *= 0.8f;
+                    }
+                    if (Scp682Event.fuhuotime == 4)
+                    {
+                        ev.Amount *= 0.5f;
+                    }
+                    if (Scp682Event.fuhuotime >= 5)
+                    {
+                        ev.Amount *= (0.5f - ((Scp682Event.fuhuotime - 4) * 0.1f) >= 0.2f ?((Scp682Event.fuhuotime - 4) * 0.1f) : 0.2f );
+                    }
+                }
+            }
             if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP999))
             {
                 if (ev.Attacker != null)
@@ -153,7 +188,7 @@ namespace Riddleyinnai
             {
                 if (RoleManger.IsRole(ev.Player.Id,RoleManger.RoleName.SCP035))
                 {
-                    ev.Amount *= 0.33f;
+                    ev.Amount *= 0.5f;
                 }
             }
             if (ev.Amount > 0)
@@ -316,17 +351,26 @@ namespace Riddleyinnai
                     tiems++;
                     if (tiems == 1)
                     {
-                        SCP1143.SpawnAScp1143(variPlayer);
+                        if (Player.List.Count() >= AwaYinNaiConfig.scp3114numnum)
+                        {
+                            SCP1143.SpawnAScp1143(variPlayer);
+                        }
                     }
 
                     if (tiems == 2)
                     {
-                        NTFHealth.SpawnAHealther(variPlayer);
+                        if (Player.List.Count() >= AwaYinNaiConfig.ntfheltherminnum)
+                        {
+                            NTFHealth.SpawnAHealther(variPlayer);
+                        }
                     }
 
                     if (tiems == 3)
                     {
-                        NTFsniper.SpawnASniper(variPlayer);
+                        if (Player.List.Count() >= AwaYinNaiConfig.ntfsniperminnum)
+                        {
+                            NTFsniper.SpawnASniper(variPlayer);
+                        }
                     }
                 }
             }
@@ -345,9 +389,12 @@ namespace Riddleyinnai
 
         private static void OnRoundStart()
         {
+            Log.Info("回合开始");
             Timing.RunCoroutine(CheckTiming());
+            Log.Info("外面执行了");
+            Timing.RunCoroutine(RenWuFenPei());
         }
-                private static IEnumerator<float> CheckTiming()
+        private static IEnumerator<float> CheckTiming()
         {
             yield return Timing.WaitForSeconds(5f);
             while (Round.IsStarted)
@@ -380,12 +427,13 @@ namespace Riddleyinnai
         }
         public static IEnumerator<float> RenWuFenPei()
         {
+            Log.Info("开始分配特色角色");
             int classd = 0;
             int scientist = 0;
             int g = 0;
             List<Player> players111 = new List<Player>();
             List<Player> awa;
-            yield return Timing.WaitForSeconds(1f);
+            yield return Timing.WaitForSeconds(2f);
             foreach (var player in Player.List)
             {
                 if (player.IsVerified && player.IsAlive)
@@ -408,7 +456,10 @@ namespace Riddleyinnai
                             }
                             break;
                         case 5:
-                            SCP035Event.SpawnAScp035(player);
+                            if (Player.List.Count() >= AwaYinNaiConfig.scp035minnum)
+                            {
+                                SCP035Event.SpawnAScp035(player);
+                            }
                             break;
                         case 3:
                             if (Player.List.Count() >= AwaYinNaiConfig.scp493minnum)
@@ -457,7 +508,7 @@ namespace Riddleyinnai
                             }
                             break;
                         case 2:
-                            if (Player.List.Count() >= 30)
+                            if (Player.List.Count() >= AwaYinNaiConfig.scp999minmnum)
                             {
                                 SCP999Event.SpawnAScp999(player);
                             }
@@ -473,7 +524,7 @@ namespace Riddleyinnai
                 ppp = YYYApi.MyApi.GetRamdomDeadPlayer();
             }
 
-            if (Player.List.Count() >= 30)
+            if (Player.List.Count() >= AwaYinNaiConfig.scp2490minnum)
             {
                 if (!SCP2490Event.scp2490spawnyes)
                 {
@@ -494,10 +545,14 @@ namespace Riddleyinnai
                 if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP035))
                 {
                     YYYApi.MyApi.ScpDeath("SCP 0 3 5",ev.DamageHandler.Type ,ev.Attacker.Nickname);
+                    Scp173Role.TurnedPlayers.Remove(ev.Player);
+                    Scp096Role.TurnedPlayers.Remove(ev.Player);
                 }
                 if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP550))
                 {
                     YYYApi.MyApi.ScpDeath("SCP 5 5 0",ev.DamageHandler.Type ,ev.Attacker.Nickname);
+                    Scp173Role.TurnedPlayers.Remove(ev.Player);
+                    Scp096Role.TurnedPlayers.Remove(ev.Player);
                 }
                 if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP2490))
                 {
@@ -506,6 +561,21 @@ namespace Riddleyinnai
                 if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCPCN08))
                 {
                     ev.Player.Scale = Vector3.one;
+                }
+            }
+
+            if (ev.Player.Role.Team == Team.SCPs)
+            {
+                if (Player.List.Count(x => x.Role.Team == Team.SCPs && x.Role.Type != RoleTypeId.Scp0492) <= 4)
+                {
+                    Timing.CallDelayed(1f, () => {                     
+                        if (Player.List.Count() >= AwaYinNaiConfig.scp682minnum)
+                        {
+                            if (!Scp682Event.spawned)
+                            {
+                                Scp682Event.SpawnAScp682(YYYApi.MyApi.GetRamdomDeadPlayer());
+                            }
+                        } });
                 }
             }
         }
@@ -529,6 +599,7 @@ namespace Riddleyinnai
         }
         public static void Register()
         {          
+            Log.Info("ETC监听");
             AwaYinNaiConfig = Main.Singleton.Config;
             Exiled.Events.Handlers.Server.RespawningTeam += OnRespawningTeam;
             Exiled.Events.Handlers.Player.Hurting += Onhurting;

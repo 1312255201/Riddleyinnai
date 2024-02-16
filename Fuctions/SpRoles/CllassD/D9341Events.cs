@@ -149,6 +149,22 @@ public class D9341Events
         {
             Timing.CallDelayed(0.1f, () =>
             {
+                foreach (var variaRagdoll in Ragdoll.List)
+                {
+                    try
+                    {
+                        var ppp = Player.Get(variaRagdoll.NetworkInfo.OwnerHub);
+                        if (ppp!= null && ppp.Id == ev.Player.Id)
+                        {
+                            variaRagdoll.Destroy();
+                        }
+                    }
+                    catch
+                    {
+                        
+                    }
+
+                }
                 if (ev.Player.Role.Type != D9341role)
                 {
                     ev.Player.Role.Set(D9341role, SpawnReason.Respawn, RoleSpawnFlags.None);

@@ -7,6 +7,7 @@ using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
 using MEC;
+using Riddleyinnai.Fuctions.SpRoleManage;
 using Riddleyinnai.Ui;
 using UnityEngine;
 
@@ -41,6 +42,10 @@ public class SCP2818
         {
             if (scp2818id.Contains(ev.Pickup.Serial))
             {
+                if (SpRoleManage.RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP2490))
+                {
+                    ev.IsAllowed = false;
+                }
                 Cassie.MessageTranslated("SCP 2 8 1 8 has been picked up","SCP-2818已被捡起，拾取者"+ev.Player.Nickname);
                 YYYApi.MyApi.SetNickName("SCP-2818持有者","cyan",ev.Player);
                 PlayerMain.Send(ev.Player, $"<color=#FFFFCC>你是:拾取了</color><color=#0066FF>[SCP-2818]</color>\n<color=#FFFFCC>1.这是个拥有无限子弹的</color><color=#FF3333>手枪</color>，当你攻击其他人时会对他人造成高额伤害，但同时你也会死亡\n<color=#FFFFCC>2.当有人因2818</color><color=#FF3333>献祭死亡时</color>，你可以捡起scp2818-A来获取更高伤害", 10, Pos.顶部两行,200);

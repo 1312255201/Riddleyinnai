@@ -36,7 +36,7 @@ public class SCP493Event
             {
                 try
                 {
-                    if (Vector3.Distance(ragdoll.transform.position, player.Position) <= 3 && ragdoll.Info.RoleType.GetTeam() != Team.SCPs && player.CurrentRoom.Type != RoomType.Pocket)
+                    if (Vector3.Distance(ragdoll.transform.position, player.Position) <= 3  && player.CurrentRoom.Type != RoomType.Pocket)
                     {
                         time++;
                         flag = true;
@@ -45,17 +45,38 @@ public class SCP493Event
                         if (time >= 10)
                         {
                             time = 0;
-                            var getupplayer = Player.Get(ragdoll.Info.OwnerHub.PlayerId);
-                            if (getupplayer != null)
+                            try
                             {
-                                if (!getupplayer.IsAlive)
+                                var getupplayer = Player.Get(ragdoll.Info.OwnerHub.PlayerId);
+                                if (getupplayer != null)
                                 {
-                                    getupplayer.Role.Set(ragdoll.Info.RoleType, SpawnReason.ForceClass, RoleSpawnFlags.None);
-                                    getupplayer.Position = ragdoll.transform.position + Vector3.up * 1.3f;
-                                    Ui.PlayerMain.Send(player,"<color=#0F0>[复活成功你成功复活了]</color>"+getupplayer.Nickname,5,Pos.正中偏下,5);
-                                    break;
+                                    if (!getupplayer.IsAlive)
+                                    {
+                                        getupplayer.Role.Set(ragdoll.Info.RoleType, SpawnReason.ForceClass, RoleSpawnFlags.None);
+                                        if (ragdoll.Info.RoleType.GetTeam() == Team.SCPs)
+                                        {
+                                            getupplayer.Health = 800;
+                                            Timing.CallDelayed(1f, () =>
+                                            {
+                                                if (getupplayer.Health >= 800)
+                                                {
+                                                    getupplayer.Health = 800;
+                                                    getupplayer.MaxHealth = 800;
+                                                }
+                                            });
+                                        }
+                                        getupplayer.Position = ragdoll.transform.position + Vector3.up * 1.3f;
+                                        Ui.PlayerMain.Send(player,"<color=#0F0>[复活成功你成功复活了]</color>"+getupplayer.Nickname,5,Pos.正中偏下,5);
+                                        
+                                        break;
+                                    }
                                 }
                             }
+                            catch
+                            {
+                                
+                            }
+
                             NetworkServer.Destroy(ragdoll.gameObject);
                             Ui.PlayerMain.Send(player,"<color=#0F0>[复活失败]</color>尸体主人可能退出服务器或者当前已经复活",5,Pos.正中偏下,5);
                         }

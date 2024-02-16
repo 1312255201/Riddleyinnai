@@ -358,9 +358,7 @@ namespace Riddleyinnai.Ui
                         nextteam = $"<color={RoleTypeId.ChaosMarauder.GetColor().ToHex()}>混沌分裂者</color>";
                     }
 
-                    var msg = $"<size=25><color=#FFCCFF>剩余</color><color=#FF0000>异常收容物</color><color=#FFCCFF>:{Player.List.Count(s => s.Role.Team == Team.SCPs)}</color>" +
-    $"\n<color=#FFCCFF>剩余</color><color=#3366FF>基金会阵营</color><color=#FFCCFF>:{Player.List.Count(s => s.Role.Team == Team.FoundationForces)}</color>" +
-    $"\n<color=#FFCCFF>剩余</color><color=#00CC33>混沌分裂者</color><color=#FFCCFF>:{Player.List.Count(s => s.Role.Team == Team.ChaosInsurgency)}</color>" +
+                    var msg = $"<size=25>" +
     $"\n<align=right><color=#ffffff>下次出生</color> <color=#ffffff>{Convert.ToInt32(TimeSpan.FromSeconds((int)RespawnManager.Singleton._timeForNextSequence - (float)RespawnManager.Singleton._stopwatch.Elapsed.TotalSeconds).TotalSeconds)}</color><color=#ffffff>秒后</color></align>" +
     $"\n<size=25><align=right><color=#ffffff>下次出生阵营:{nextteam}</size></align></size>";
                     

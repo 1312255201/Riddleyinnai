@@ -27,7 +27,7 @@ namespace Riddleyinnai.Fuctions.Items
                 if(!DaMaUseList.ContainsKey(ev.Player.Id))
                 {
                     DaMaUseList.Add(ev.Player.Id ,1);
-                    ev.Player.Broadcast(3, "你使用了一个大麻,当前你以使用" + DaMaUseList[ev.Player.Id]);
+                    ev.Player.Broadcast(3, "你使用了一个SCP420-J,当前你以使用" + DaMaUseList[ev.Player.Id]);
                     ev.Player.EnableEffect<Concussed>(5f);
                     Timing.CallDelayed(3f, () =>
                     {
@@ -37,7 +37,7 @@ namespace Riddleyinnai.Fuctions.Items
                 else
                 {
                     DaMaUseList[ev.Player.Id]++;
-                    ev.Player.Broadcast(3, "你使用了一个大麻,当前你以使用" + DaMaUseList[ev.Player.Id]);
+                    ev.Player.Broadcast(3, "你使用了一个SCP420-J,当前你以使用" + DaMaUseList[ev.Player.Id]);
                     if (DaMaUseList[ev.Player.Id] % 8 == 0)
                     {
                         ev.Player.EnableEffect<Scp207>();
