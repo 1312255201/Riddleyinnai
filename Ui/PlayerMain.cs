@@ -17,24 +17,12 @@ namespace Riddleyinnai.Ui
     {
         public static void Send(Player player,string text, int time = 5, Pos Pos = Pos.顶部正中, int weight = 5, bool countdown = true)
         {
-            /*
-            if (player.GameObject.TryGetComponent<Component>(out var component))
-            {
-                component.Add(text,time,Pos,weight,countdown);
-            }
-            */
             Add(player,text,time, Pos, weight,countdown);
         }
         public static void Send(List<Player> players, string text, int time = 5, Pos Pos = Pos.顶部正中, int weight = 5, bool countdown = true)
         {
             foreach(var item in players)
             {
-                /*
-                if (item.GameObject.TryGetComponent<Component>(out var component))
-                {
-                    component.Add(text, time, Pos, weight, countdown);
-                }
-                */
                 Add(item, text, time, Pos, weight, countdown);
             }
         }
@@ -222,44 +210,44 @@ namespace Riddleyinnai.Ui
                         {
                             if (p.Role.Team == Team.SCPs)
                             {
-                                                            if (p.Role == RoleTypeId.Scp079)
-                            {
-                                var level = 1;
-                                float power = 0;
-                                if (p.Role.Is<Scp079Role>(out Scp079Role role))
+                                if (p.Role == RoleTypeId.Scp079)
                                 {
-                                    level = role.Level;
-                                    power = role.Energy;
+                                    var level = 1;
+                                    float power = 0;
+                                    if (p.Role.Is<Scp079Role>(out Scp079Role role))
+                                    {
+                                        level = role.Level;
+                                        power = role.Energy;
+                                    }
+                                    linecount++;
+                                    scpcount++;
+                                    msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>等级</b> " + level + " 电量 " + "<color=#6699ff>" + power + "</color>" + "</size></align><b>";
                                 }
-                                linecount++;
-                                scpcount++;
-                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>等级</b> " + level + " 电量 " + "<color=#6699ff>" + power + "</color>" + "</size></align><b>";
-                            }
-                            else if (p.Role.Type != RoleTypeId.Scp0492)
-                            {
-                                var str = p.Role.Type.ToString();
-                                var healthcolor = "#66ff66";
-                                if (p.Health <= p.MaxHealth * 0.6f)
+                                else if (p.Role.Type != RoleTypeId.Scp0492)
                                 {
-                                    healthcolor = "#ffcc99";
+                                    var str = p.Role.Type.ToString();
+                                    var healthcolor = "#66ff66";
+                                    if (p.Health <= p.MaxHealth * 0.6f)
+                                    {
+                                        healthcolor = "#ffcc99";
+                                    }
+                                    else if (p.Health <= p.MaxHealth * 0.25f)
+                                    {
+                                        healthcolor = "#cc0000";
+                                    }
+                                    var zone = "";
+                                    switch (p.Zone)
+                                    {
+                                        case Exiled.API.Enums.ZoneType.Surface: zone = "地表"; break;
+                                        case Exiled.API.Enums.ZoneType.Entrance: zone = "办公"; break;
+                                        case Exiled.API.Enums.ZoneType.LightContainment: zone = "轻收"; break;
+                                        case Exiled.API.Enums.ZoneType.HeavyContainment: zone = "重收"; break;
+                                        default: zone = "未知"; break;
+                                    }
+                                    linecount++;
+                                    scpcount++;
+                                    msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + " HS " + "<color=#6699ff>" + p.HumeShield + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
                                 }
-                                else if (p.Health <= p.MaxHealth * 0.25f)
-                                {
-                                    healthcolor = "#cc0000";
-                                }
-                                var zone = "";
-                                switch (p.Zone)
-                                {
-                                    case Exiled.API.Enums.ZoneType.Surface: zone = "地表"; break;
-                                    case Exiled.API.Enums.ZoneType.Entrance: zone = "办公"; break;
-                                    case Exiled.API.Enums.ZoneType.LightContainment: zone = "轻收"; break;
-                                    case Exiled.API.Enums.ZoneType.HeavyContainment: zone = "重收"; break;
-                                    default: zone = "未知"; break;
-                                }
-                                linecount++;
-                                scpcount++;
-                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + " HS " + "<color=#6699ff>" + p.HumeShield + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
-                            }
                             }
                             else
                             {
@@ -284,7 +272,7 @@ namespace Riddleyinnai.Ui
                                 }
                                 linecount++;
                                 scpcount++;
-                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + "  " + "<color=#6699ff>" + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
+                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + RoleManger.GetRole(p.Id) + "</color>" + "<b>]" +p.Nickname+"</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + "  " + "<color=#6699ff> AHP: " + p.ArtificialHealth + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
                             }
 
                         }

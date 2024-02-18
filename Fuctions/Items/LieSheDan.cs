@@ -3,6 +3,7 @@ using Exiled.API.Features;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Player;
+using InventorySystem.Items.Firearms.BasicMessages;
 using MEC;
 using Riddleyinnai.Ui;
 using UnityEngine;
@@ -12,10 +13,10 @@ namespace Riddleyinnai.Fuctions.Items;
 public class LieSheDan
 {
         public static List<ushort> items = new List<ushort>();
-        public static int lastuse = 5;
+        public static int lastuse = 4;
     public static void GiveItem(Player player)
     {
-        items.Add(player.AddItem(ItemType.GunE11SR).Serial);
+        items.Add(player.AddItem(ItemType.GunRevolver).Serial);
     }
 
     private static void OnPlayerShoot(ShotEventArgs ev)
@@ -27,10 +28,16 @@ public class LieSheDan
                 ev.Firearm.Ammo -= 4;
                 lastuse = 4;
             }
-            else
+        }
+    }
+
+    private static void OnPlayerChangingItem(ChangingItemEventArgs ev)
+    {
+        if (ev.Item != null)
+        {
+            if (items.Contains(ev.Item.Serial))
             {
-                lastuse = ev.Firearm.Ammo + 1;
-                ev.Firearm.Ammo = 0;
+                Ui.PlayerMain.Send(ev.Player,"你手中的物品为<color=#0F0>[M500]</color>每次攻击射出4发子弹，攻击两次需要重新装弹",7,Pos.正中偏下,5);
             }
         }
     }
@@ -38,7 +45,7 @@ public class LieSheDan
     {
         if (items.Contains(ev.Pickup.Serial))
         {
-            Ui.PlayerMain.Send(ev.Player,"你捡起了<color=#0F0>[猎蛇弹]</color>开火射出多枚子弹造成大额伤害",5,Pos.正中偏下,5);
+            Ui.PlayerMain.Send(ev.Player,"你捡起了<color=#0F0>[M500]</color>每次攻击射出4发子弹，攻击两次需要重新装弹",7,Pos.正中偏下,5);
         }
     }
     private static IEnumerator<float> CheckTiming()
@@ -59,6 +66,29 @@ public class LieSheDan
             }
         }
     }
+
+    private static void OnPlayerReloadWeapen(ReloadingWeaponEventArgs ev)
+    {
+        if (items.Contains(ev.Firearm.Serial))
+        {
+            if (ev.Firearm.Ammo < 8)
+            {
+                byte tmp = ev.Firearm.Ammo;
+                ev.IsAllowed = false;
+                ev.Player.Connection.Send<RequestMessage>(new RequestMessage(ev.Firearm.Serial, RequestType.Reload));
+                Timing.CallDelayed(2f, () =>
+                {
+                    if (ev.Player.CurrentItem != null && items.Contains(ev.Player.CurrentItem.Serial))
+                    {
+                        if (ev.Firearm.Ammo >= tmp)
+                        {
+                            ev.Firearm.Ammo = 8;
+                        }
+                    }
+                });
+            }
+        }
+    }
     private static void OnRoundStart()
     {
         Timing.RunCoroutine(CheckTiming());
@@ -74,6 +104,8 @@ public class LieSheDan
         Exiled.Events.Handlers.Server.RestartingRound += OnRoundRestart;
         Exiled.Events.Handlers.Player.PickingUpItem += OnPlayerPickingItem;
         Exiled.Events.Handlers.Player.Shot += OnPlayerShoot;
+        Exiled.Events.Handlers.Player.ReloadingWeapon += OnPlayerReloadWeapen;
+        Exiled.Events.Handlers.Player.ChangingItem += OnPlayerChangingItem;
     }
 
     public static void UnReg()
@@ -82,5 +114,7 @@ public class LieSheDan
         Exiled.Events.Handlers.Server.RestartingRound -= OnRoundRestart;
         Exiled.Events.Handlers.Player.PickingUpItem -= OnPlayerPickingItem;
         Exiled.Events.Handlers.Player.Shot -= OnPlayerShoot;
+        Exiled.Events.Handlers.Player.ReloadingWeapon -= OnPlayerReloadWeapen;
+        Exiled.Events.Handlers.Player.ChangingItem -= OnPlayerChangingItem;
     }
 }

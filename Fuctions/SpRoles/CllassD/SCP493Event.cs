@@ -20,7 +20,7 @@ public class SCP493Event
     {
         RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP493,"",Side.ChaosInsurgency,false);
         Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FFCC66>[SCP-493]</color>\n<color=#FFFFCC>1.复活尸体：当你盯着</color><color=#FF3333>一具尸体后</color><color=#FFFFCC>10秒钟，他将复活</color>",15,Pos.正中偏下,5);
-        YYYApi.MyApi.SetNickName("SCP-493","orange",player);
+        YYYApi.MyApi.SetNickName("SCP-493","",player);
         Timing.RunCoroutine(CheckTiming(player));
     }
     private static IEnumerator<float> CheckTiming(Player player)

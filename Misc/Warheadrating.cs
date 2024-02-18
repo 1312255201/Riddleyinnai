@@ -5,6 +5,7 @@ using MEC;
 using PlayerStatsSystem;
 using System.Collections.Generic;
 using System.Linq;
+using PlayerRoles;
 
 namespace Riddleyinnai.Misc
 {
@@ -36,7 +37,6 @@ namespace Riddleyinnai.Misc
                         }
                         if (player.CurrentRoom == Door.Get(Exiled.API.Enums.DoorType.NukeArmory).Room)
                         {
-                            
                             status.Find(x => x.userid == player.UserId).time++;
                             if (status.Find(x => x.userid == player.UserId).time >= 20)
                             {
@@ -56,7 +56,10 @@ namespace Riddleyinnai.Misc
                         {
                             if (player.IsScp)
                             {
-                                player.ReferenceHub.playerStats.DealDamage(new UniversalDamageHandler(5,DeathTranslations.Warhead));
+                                if (player.Role.Type != RoleTypeId.Scp079)
+                                {
+                                    player.ReferenceHub.playerStats.DealDamage(new UniversalDamageHandler(5,DeathTranslations.Warhead));
+                                }
                             }
                             else
                             {

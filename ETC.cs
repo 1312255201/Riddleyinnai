@@ -333,7 +333,6 @@ namespace Riddleyinnai
                 
             }
         }
-        
         private static IEnumerator<float> SetNineFox2(List<Player> players)
         {
             yield return Timing.WaitForSeconds(0.1f);
@@ -513,6 +512,12 @@ namespace Riddleyinnai
                                 SCP999Event.SpawnAScp999(player);
                             }
                             break;
+                        default:
+                            if (new System.Random(Environment.TickCount + player.Id).Next(1, 100) >= 80)
+                            {
+                                LieSheDan.GiveItem(player);
+                            }
+                            break;
                     }
                 }
             }
@@ -595,7 +600,30 @@ namespace Riddleyinnai
 
         private static void OnRoundEnding(EndingRoundEventArgs ev)
         {
-            
+            bool scp = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.Scp);
+            bool ntf = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.Mtf);
+            bool chaos = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.ChaosInsurgency && !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP493)&& !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP2490));
+            bool dd = Player.List.Any(x => x.Role.Type == RoleTypeId.ClassD);
+            if (scp && !ntf && !dd)
+            {
+                ev.IsAllowed = true;
+            }
+            else if (ntf && !dd && !scp)
+            {
+                ev.IsAllowed = true;
+            }
+            else if (chaos && !ntf && !dd)
+            {
+                ev.IsAllowed = true;
+            }
+            else if(!scp && !ntf && !chaos && !dd)
+            {
+                ev.IsAllowed = true;
+            }
+            else
+            {
+                ev.IsAllowed = false;
+            }
         }
         public static void Register()
         {          

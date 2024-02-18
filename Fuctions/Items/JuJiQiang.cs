@@ -47,7 +47,17 @@ public class JuJiQiang
     {
         if (items.Contains(ev.Pickup.Serial))
         {
-            Ui.PlayerMain.Send(ev.Player,"你捡起了<color=#0F0>[狙击步枪]</color>每次只可以发射一发子弹，但是有巨额伤害",5,Pos.正中偏下,5);
+            Ui.PlayerMain.Send(ev.Player,"你捡起了<color=#0F0>[狙击步枪]</color>每次只可以发射一发子弹，但是有巨额伤害",7,Pos.正中偏下,5);
+        }
+    }
+    private static void OnPlayerChangingItem(ChangingItemEventArgs ev)
+    {
+        if (ev.Item != null)
+        {
+            if (items.Contains(ev.Item.Serial))
+            {
+                Ui.PlayerMain.Send(ev.Player,"你手中的物品为<color=#0F0>[狙击步枪]</color>每次只可以发射一发子弹，但是有巨额伤害",7,Pos.正中偏下,5);
+            }
         }
     }
     public static void OnPlayerReloading(ReloadingWeaponEventArgs ev)
@@ -108,6 +118,7 @@ public class JuJiQiang
         Exiled.Events.Handlers.Server.RoundStarted += OnRoundStart;
         Exiled.Events.Handlers.Server.RestartingRound += OnRoundRestart;
         Exiled.Events.Handlers.Player.PickingUpItem += OnPlayerPickingItem;
+        Exiled.Events.Handlers.Player.ChangingItem += OnPlayerChangingItem;
     }
 
     public static void UnReg()
@@ -117,5 +128,6 @@ public class JuJiQiang
         Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStart;
         Exiled.Events.Handlers.Server.RestartingRound -= OnRoundRestart;
         Exiled.Events.Handlers.Player.PickingUpItem -= OnPlayerPickingItem;
+        Exiled.Events.Handlers.Player.ChangingItem -= OnPlayerChangingItem;
     }
 }

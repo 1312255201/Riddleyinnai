@@ -22,7 +22,7 @@ public class SCP1143
         if (!SpRoleManage.RoleManger.GetRole(RoleManger.RoleName.SCP1143).Any())
         {
             SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP1143,"",Side.Mtf,false);
-            YYYApi.MyApi.SetNickName("SCP-1143","cyan",player);
+            YYYApi.MyApi.SetNickName("SCP-1143","",player);
             Ui.PlayerMain.Send(player,"你是<color=#0F0>[SCP-1143]</color>每隔一段30s你的背包内会刷新手雷/闪光弹 通过炸死其他人来获得升级",5,Pos.正中偏下,5);
             scp1143num = 0;
             scp1143cd = false;

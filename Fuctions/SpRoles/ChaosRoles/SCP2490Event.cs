@@ -28,7 +28,7 @@ public class SCP2490Event
         Timing.CallDelayed(0.04f, () =>
         {
             SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP2490,"",Side.ChaosInsurgency,false);
-            YYYApi.MyApi.SetNickName("SCP-2490", "green", player);
+            YYYApi.MyApi.SetNickName("SCP-2490", "", player);
             Ui.PlayerMain.Send(player, $"<color=#FFFFCC>你是:</color><color=#66FF66>[SCP-2490]</color>\n<color=#FFFFCC>1.匿迹：你的 SCP-268 使用冷却为</color><color=#FF3333>45秒</color>\n<color=#FFFFCC>2.精神干扰（暗杀）：使用帽子（SCP-268）时，背包额外获得一把USP或左轮，USP或左轮能</color><color=#FF3333>造成大量伤害</color>\n<color=#FFFFCC>3.传送：右键硬币时，传送到随机敌对阵营玩家身边。右键手电筒时，传送到随机队友身边。</color>",15,Ui.Pos.正中偏下,5);
             player.ClearInventory();
             player.AddItem(ItemType.SCP268);

@@ -23,7 +23,7 @@ public class SCP550Event
     {
         player.Role.Set(RoleTypeId.Tutorial);
         SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP550,"",Side.Scp,false);
-        YYYApi.MyApi.SetNickName("SCP-550","red",player);
+        YYYApi.MyApi.SetNickName("SCP-550","",player);
         Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FF3300>[SCP-550]</color>\n1.特殊收容措施已失效\u2586\u2586-2\u25866\u2586，你的目标是与其他SCP合作侵占整个设施\n2.你只能使用钥匙卡、手枪、冲锋枪、投掷物、医疗品、SCP268\n3.你有50%的子弹抗性，攻击敌人恢复少量HP与AHP"/*\n4.你的宿敌可能后方逃生点\n*/,15,Pos.正中偏下,5);
         Timing.CallDelayed(0.3f, () =>
         {

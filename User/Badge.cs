@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Riddleyinnai.Fuctions.SpRoleManage;
 using UnityEngine;
 using YinnaiAPI;
 
@@ -58,6 +59,10 @@ namespace Riddleyinnai.User
             if (player != null)
             {
                 //Log.Info($"nickname:{player.Nickname}");
+                if (RoleManger.IsRole(player.Id))
+                {
+                    return;
+                }
                 if (Badge.badges.TryGetValue(player.UserId, out var badgemodel))
                 {
                     if (Badge.Hidebadges.Contains(player.UserId) || player.GlobalBadge.HasValue)

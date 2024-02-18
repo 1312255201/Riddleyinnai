@@ -16,7 +16,7 @@ public class SCP069Event
     public static void SpawnAScp069(Player player)
     {
         RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP069,"",Side.ChaosInsurgency,false);
-        YYYApi.MyApi.SetNickName("SCP-069","orange",player);
+        YYYApi.MyApi.SetNickName("SCP-069","",player);
         Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FFCC66>[SCP-069]</color>\n<color=#FFFFCC>1.你有在</color><color=#FF3333>死亡后</color><color=#FFFFCC>随机复活在附近的尸体上。</color>",10);
     }
 

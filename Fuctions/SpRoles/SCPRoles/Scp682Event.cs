@@ -59,7 +59,7 @@ public class Scp682Event
                 player.Position = RoleTypeId.Scp049.GetRandomSpawnLocation().Position + Vector3.up;
             }
             SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP682,"",Side.Scp,false);
-            YYYApi.MyApi.SetNickName("SCP-682","red",player);
+            YYYApi.MyApi.SetNickName("SCP-682","",player);
             Ui.PlayerMain.Send(player,"<color=#FFFFCC>你是:</color><color=#FF3300>[SCP-682]</color>无限复活越复活后越强但是代价是之后的每一次复活时间都会变长，之后的每次复活都会加10%抗性直到80%抗性后不再增长。\n",15,Pos.正中偏下,5);
         });
         if (CoroutineHandle.IsRunning)

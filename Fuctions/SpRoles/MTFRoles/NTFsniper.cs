@@ -17,7 +17,7 @@ public class NTFsniper
     {
         if (JuJiQiang.items.Count < 3)
         {
-            YYYApi.MyApi.SetNickName("九尾狐狙击手", "cyan", player);
+            YYYApi.MyApi.SetNickName("九尾狐狙击手", "", player);
             RoleManger.AddRole(player.Id,RoleManger.RoleName.九尾狐狙击手,"",Side.Mtf,false);
             JuJiQiang.GiveItem(player);
             foreach (Item item in player.Items)

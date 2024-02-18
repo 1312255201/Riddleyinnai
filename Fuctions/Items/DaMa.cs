@@ -69,8 +69,8 @@ namespace Riddleyinnai.Fuctions.Items
         }
         private static IEnumerator<float> CheckTiming()
         {
-            yield return Timing.WaitForSeconds(1f);
-            int time = new System.Random().Next(15,30);
+            yield return Timing.WaitForSeconds(1);
+            int time = 180;
             var room = Room.Get(Exiled.API.Enums.RoomType.LczPlants);
             while (Round.IsStarted)
             {

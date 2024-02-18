@@ -19,7 +19,7 @@ public class SCP999Event
         player.AddItem(ItemType.ArmorLight);
         player.AddItem(ItemType.KeycardZoneManager);
         SpRoleManage.RoleManger.AddRole(player.Id,RoleManger.RoleName.SCP999,"",Side.Tutorial,false);
-        YYYApi.MyApi.SetNickName("SCP-999","orange",player);
+        YYYApi.MyApi.SetNickName("SCP-999","",player);
     }
     private static void OnTriggeringTesla(TriggeringTeslaEventArgs ev)
     {

@@ -22,7 +22,7 @@ namespace Riddleyinnai.Fuctions.SpRoles.MTFRoles;
             {
                 player.Role.Set(RoleTypeId.NtfPrivate);
             }
-            MyApi.SetNickName("九尾狐医疗兵", "cyan", player);
+            MyApi.SetNickName("九尾狐医疗兵", "", player);
             Ui.PlayerMain.Send(player, ".你是[九尾狐医疗兵]你可以手持[普通医疗包]制作[高级医疗包]\n2.制作时间为30s，逃生点内10s\n3.你出生携带两个[高级医疗包]，可使用五次", 5, Pos.正中偏下,
                 5);
             if (player.Role.Type != RoleTypeId.NtfSergeant)
