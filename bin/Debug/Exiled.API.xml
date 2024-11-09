@@ -398,6 +398,101 @@
             Damage caused by the marshmallow man.
             </summary>
         </member>
+        <member name="T:Exiled.API.Enums.DanceType">
+            <summary>
+            All available dance variants being used by SCP-3114.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.BreakDance">
+            <summary>
+            Break-dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.ChickenDance">
+            <summary>
+            Chicken dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.RunningMan">
+            <summary>
+            The "Running Man" dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.Maraschino">
+            <summary>
+            The "Maraschino" dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.Twist">
+            <summary>
+            Twist dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.CabbagePatch">
+            <summary>
+            The "Cabbage Patch" dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.Swing">
+            <summary>
+            Swing dance.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DanceType.None">
+            <summary>
+            Dance1
+            </summary>
+        </member>
+        <member name="T:Exiled.API.Enums.DangerType">
+            <summary>
+            A list of Types used by exiled for <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/>.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.None">
+            <summary>
+            Used when there's an error.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.Warhead">
+            <summary>
+            Warhead.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.CardiacArrest">
+            <summary>
+            Cardiac Arrest.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.RageTarget">
+            <summary>
+            Rage Target.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.Corroding">
+            <summary>
+            Corroding.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.PlayerDamaged">
+            <summary>
+            Player Damaged.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.ScpEncounter">
+            <summary>
+            Scp Encounter.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.ZombieEncounter">
+            <summary>
+            Zombie Encounter.
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.DangerType.ArmedEnemy">
+            <summary>
+            Armed Enemy.
+            </summary>
+        </member>
         <member name="T:Exiled.API.Enums.DecontaminationState">
             <summary>
             Represents the state of a <see cref="T:LightContainmentZoneDecontamination.DecontaminationController"/>.
@@ -1077,6 +1172,17 @@
             Makes the player nearly invisible, and allows them to pass through doors.
             </summary>
         </member>
+        <member name="F:Exiled.API.Enums.EffectType.FogControl">
+            <summary>
+            Manipulate wish Fog player will have.
+            <remarks>You can choose fog with <see cref="T:CustomRendering.FogType"/> and putting it on intensity.</remarks>
+            </summary>
+        </member>
+        <member name="F:Exiled.API.Enums.EffectType.Slowness">
+            <summary>
+            <see cref="T:CustomPlayerEffects.Slowness"/>.
+            </summary>
+        </member>
         <member name="T:Exiled.API.Enums.ElevatorType">
             <summary>
             The unique type of elevator.
@@ -1146,7 +1252,7 @@
         </member>
         <member name="F:Exiled.API.Enums.EnvironmentType.ProductionDebug">
             <summary>
-            The Production enviroemnt, for the public, with debugging features.
+            The Production environment, for the public, with debugging features.
             </summary>
         </member>
         <member name="T:Exiled.API.Enums.EscapeScenario">
@@ -1543,6 +1649,11 @@
         <member name="F:Exiled.API.Enums.PluginPriority.First">
             <summary>
             Execute the plugin first, before other ones.
+            </summary>
+        </member>
+        <member name="T:Exiled.API.Enums.PrefabType">
+            <summary>
+            Type of prefab.
             </summary>
         </member>
         <member name="T:Exiled.API.Enums.ProjectileType">
@@ -2430,6 +2541,51 @@
             <param name="damageHandlerBase">The DamageHandler to convert.</param>
             <returns>The <see cref="T:Exiled.API.Enums.DamageType"/> of the <see cref="T:PlayerStatsSystem.DamageHandlerBase"/>.</returns>
         </member>
+        <member name="T:Exiled.API.Extensions.DangerTypeExtensions">
+            <summary>
+            A set of extensions for <see cref="T:Exiled.API.Enums.DangerType"/>.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Extensions.DangerTypeExtensions.DangerTypeToType">
+            <summary>
+            Gets a dictionary that maps each <see cref="T:Exiled.API.Enums.DangerType"/> to its corresponding <see cref="T:System.Type"/>.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Extensions.DangerTypeExtensions.TypeToDangerType">
+            <summary>
+            Gets a dictionary that maps each <see cref="T:System.Type"/> to its corresponding <see cref="T:Exiled.API.Enums.DangerType"/>.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Extensions.DangerTypeExtensions.Type(Exiled.API.Enums.DangerType)">
+            <summary>
+            Gets an instance of <see cref="T:System.Type"/> points to a danger.
+            </summary>
+            <param name="danger">The <see cref="T:Exiled.API.Enums.DangerType"/> enum.</param>
+            <returns>The <see cref="T:System.Type"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Extensions.DangerTypeExtensions.TryGetType(Exiled.API.Enums.DangerType,System.Type@)">
+            <summary>
+            Gets an instance of <see cref="T:System.Type"/> points to a danger.
+            </summary>
+            <param name="danger">The <see cref="T:Exiled.API.Enums.DangerType"/> enum.</param>
+            <param name="type">The type found with the corresponding DangerType.</param>
+            <returns>Whether or not the type has been found.</returns>
+        </member>
+        <member name="M:Exiled.API.Extensions.DangerTypeExtensions.GetDangerType(CustomPlayerEffects.Danger.DangerStackBase)">
+            <summary>
+            Gets the <see cref="T:Exiled.API.Enums.DangerType"/> of the specified <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/>.
+            </summary>
+            <param name="dangerStackBase">The <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/> enum.</param>
+            <returns>The <see cref="T:Exiled.API.Enums.DangerType"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Extensions.DangerTypeExtensions.TryGetDangerType(CustomPlayerEffects.Danger.DangerStackBase,Exiled.API.Enums.DangerType@)">
+            <summary>
+            Gets the <see cref="T:Exiled.API.Enums.DangerType"/> of the specified <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/>.
+            </summary>
+            <param name="dangerStackBase">The <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/> enum.</param>
+            <param name="danger">The danger type found.</param>
+            <returns>Whether or not the danger has been found.</returns>
+        </member>
         <member name="T:Exiled.API.Extensions.DoorTypeExtensions">
             <summary>
             A set of extensions for <see cref="T:Exiled.API.Enums.DoorType"/>.
@@ -2500,6 +2656,13 @@
             <param name="statusEffectBase">The <see cref="T:CustomPlayerEffects.StatusEffectBase"/> enum.</param>
             <param name="effect">The effect found.</param>
             <returns>Whether or not the effect has been found.</returns>
+        </member>
+        <member name="M:Exiled.API.Extensions.EffectTypeExtension.SetFogType(CustomPlayerEffects.FogControl,CustomRendering.FogType)">
+            <summary>
+            Sets the <see cref="T:CustomRendering.FogType"/> of the specified <see cref="T:CustomPlayerEffects.FogControl"/>.
+            </summary>
+            <param name="fogControl">The <see cref="T:CustomPlayerEffects.FogControl"/> effect.</param>
+            <param name="fogType">The <see cref="T:CustomRendering.FogType"/> applied.</param>
         </member>
         <member name="M:Exiled.API.Extensions.EffectTypeExtension.IsHarmful(Exiled.API.Enums.EffectType)">
             <summary>
@@ -2801,6 +2964,14 @@
             <param name="target">Only this player can see room color.</param>
             <param name="color">Color to set.</param>
         </member>
+        <member name="M:Exiled.API.Extensions.MirrorExtensions.SetRoomLightsForTargetOnly(Exiled.API.Features.Room,Exiled.API.Features.Player,System.Boolean)">
+            <summary>
+            Sets the lights of a <paramref name="room"/> to be either on or off, visible only to the <paramref name="target"/> player.
+            </summary>
+            <param name="room">The room to modify the lights of.</param>
+            <param name="target">The player who will see the lights state change.</param>
+            <param name="value">The state to set the lights to. True for on, false for off.</param>
+        </member>
         <member name="M:Exiled.API.Extensions.MirrorExtensions.SetName(Exiled.API.Features.Player,Exiled.API.Features.Player,System.String)">
             <summary>
             Sets <see cref="P:Exiled.API.Features.Player.DisplayNickname"/> of a <paramref name="player"/> that only the <paramref name="target"/> player can see.
@@ -3009,6 +3180,15 @@
             </summary>
             <param name="roleType">The <see cref="T:PlayerRoles.RoleTypeId"/>.</param>
             <param name="roleBase">The <see cref="T:PlayerRoles.PlayerRoleBase"/> to return.</param>
+            <returns>The <see cref="T:PlayerRoles.PlayerRoleBase"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Extensions.RoleExtensions.TryGetRoleBase``1(PlayerRoles.RoleTypeId,``0@)">
+            <summary>
+            Tries to get the base <see cref="T:PlayerRoles.PlayerRoleBase"/> of the given <see cref="T:PlayerRoles.RoleTypeId"/>.
+            </summary>
+            <param name="roleType">The <see cref="T:PlayerRoles.RoleTypeId"/>.</param>
+            <param name="roleBase">The <see cref="T:PlayerRoles.PlayerRoleBase"/> to return.</param>
+            <typeparam name="T">The type to cast the <see cref="T:PlayerRoles.PlayerRoleBase"/> to.</typeparam>
             <returns>The <see cref="T:PlayerRoles.PlayerRoleBase"/>.</returns>
         </member>
         <member name="M:Exiled.API.Extensions.RoleExtensions.GetLeadingTeam(PlayerRoles.Team)">
@@ -3300,6 +3480,26 @@
         <member name="P:Exiled.API.Features.Attributes.PatchGroupAttribute.GroupId">
             <summary>
             Gets the group id.
+            </summary>
+        </member>
+        <member name="T:Exiled.API.Features.Attributes.PrefabAttribute">
+            <inheritdoc />
+        </member>
+        <member name="M:Exiled.API.Features.Attributes.PrefabAttribute.#ctor(System.UInt32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.API.Features.Attributes.PrefabAttribute"/> class.
+            </summary>
+            <param name="assetId"><inheritdoc cref="P:Exiled.API.Features.Attributes.PrefabAttribute.AssetId"/></param>
+            <param name="name"><inheritdoc cref="P:Exiled.API.Features.Attributes.PrefabAttribute.Name"/></param>
+        </member>
+        <member name="P:Exiled.API.Features.Attributes.PrefabAttribute.AssetId">
+            <summary>
+            Gets the prefab's asset id.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Attributes.PrefabAttribute.Name">
+            <summary>
+            Gets the prefab's name.
             </summary>
         </member>
         <member name="T:Exiled.API.Features.Badge">
@@ -6177,6 +6377,11 @@
             Gets a value indicating whether or not this door is subdoor belonging to a checkpoint.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Doors.Door.ParentCheckpointDoor">
+            <summary>
+            Gets the checkpoint door the door is belonging to, or null if the door doesn't belong to a checkpoint.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Doors.Door.IsKeycardDoor">
             <summary>
             Gets a value indicating whether or not this door requires a keycard to open.
@@ -8395,6 +8600,11 @@
             Gets or sets the amount of time in seconds that the <see cref="T:CustomPlayerEffects.Flashed"/> effect will be applied on being hit.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Items.Jailbird.ConcussionDuration">
+            <summary>
+            Gets or sets the amount of time in seconds that the <see cref="T:CustomPlayerEffects.Concussed"/> effect will be applied on being hit.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Items.Jailbird.Radius">
             <summary>
             Gets or sets the radius of the Jailbird's hit register.
@@ -8938,6 +9148,9 @@
             <param name="type">The <see cref="T:ItemType"/> of the throwable item.</param>
             <param name="player">The owner of the throwable item. Leave <see langword="null"/> for no owner.</param>
             <remarks>The player parameter will always need to be defined if this throwable is custom using Exiled.CustomItems.</remarks>
+        </member>
+        <member name="P:Exiled.API.Features.Items.Throwable.Scale">
+            <inheritdoc/>
         </member>
         <member name="P:Exiled.API.Features.Items.Throwable.Base">
             <summary>
@@ -9615,6 +9828,15 @@
             <param name="position">The position where effect will be created.</param>
             <param name="projectileType">The projectile that will create the effect.</param>
         </member>
+        <member name="M:Exiled.API.Features.Map.PlayGunSound(UnityEngine.Vector3,ItemType,System.Byte,System.Byte)">
+            <summary>
+            Plays a gun sound at the specified position.
+            </summary>
+            <param name="position">Position to play the sound at.</param>
+            <param name="firearmType">The type of firearm to play the sound of.</param>
+            <param name="maxDistance">The maximum distance the sound can be heard from.</param>
+            <param name="audioClipId">The audio clip ID to play.</param>
+        </member>
         <member name="M:Exiled.API.Features.Map.ClearCache">
             <summary>
             Clears the lazy loading game object cache.
@@ -10178,6 +10400,11 @@
         <member name="P:Exiled.API.Features.Pickups.JailbirdPickup.FlashDuration">
             <summary>
             Gets or sets the amount of time in seconds that the <see cref="T:CustomPlayerEffects.Flashed"/> effect will be applied on being hit.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Pickups.JailbirdPickup.ConcussionDuration">
+            <summary>
+            Gets or sets the amount of time in seconds that the <see cref="T:CustomPlayerEffects.Concussed"/> effect will be applied on being hit.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Pickups.JailbirdPickup.Radius">
@@ -11693,6 +11920,16 @@
             Gets or sets the player's unit id.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Player.Dangers">
+            <summary>
+            Gets an array of <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/> if the Scp1853 effect is enabled or an empty array if it is not enabled.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Player.ActiveDangers">
+            <summary>
+            Gets a list of active <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/> the player has.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Player.Health">
             <summary>
             Gets or sets the player's health.
@@ -13143,6 +13380,21 @@
             <param name="intensity">The intensity of the effect.</param>
             <param name="duration">The new length of the effect. Defaults to infinite length.</param>
         </member>
+        <member name="M:Exiled.API.Features.Player.GetDanger(Exiled.API.Enums.DangerType)">
+            <summary>
+            Gets an instance of <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/> by <see cref="T:Exiled.API.Enums.DangerType"/> if the Scp1853 effect is enabled or null if it is not enabled.
+            </summary>
+            <param name="dangerType">The <see cref="T:Exiled.API.Enums.DangerType"/>.</param>
+            <returns>The <see cref="T:CustomPlayerEffects.Danger.DangerStackBase"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.Player.TryGetDanger(Exiled.API.Enums.DangerType,CustomPlayerEffects.Danger.DangerStackBase@)">
+            <summary>
+            Tries to get an instance of <see cref="T:CustomPlayerEffects.StatusEffectBase"/> by <see cref="T:Exiled.API.Enums.EffectType"/> (does not work if the Scp1853 effect is not enabled).
+            </summary>
+            <param name="type">The <see cref="T:Exiled.API.Enums.EffectType"/>.</param>
+            <param name="danger">The <see cref="T:CustomPlayerEffects.StatusEffectBase"/>.</param>
+            <returns>A bool indicating whether or not the <paramref name="danger"/> was successfully gotten.</returns>
+        </member>
         <member name="M:Exiled.API.Features.Player.OpenReportWindow(System.String)">
             <summary>
             Opens the report window.
@@ -13572,6 +13824,47 @@
             </summary>
             <param name="obj">The <see cref="T:System.Text.StringBuilder"/> to return.</param>
             <returns>The value of the <see cref="T:System.Text.StringBuilder"/>.</returns>
+        </member>
+        <member name="T:Exiled.API.Features.PrefabHelper">
+            <summary>
+            Helper for Prefabs.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.PrefabHelper.PrefabToGameObject">
+            <summary>
+            Gets a dictionary of <see cref="T:Exiled.API.Enums.PrefabType"/> to <see cref="T:UnityEngine.GameObject"/>.
+            </summary>
+        </member>
+        <member name="M:Exiled.API.Features.PrefabHelper.GetPrefabAttribute(Exiled.API.Enums.PrefabType)">
+            <summary>
+            Gets the prefab attribute of a prefab type.
+            </summary>
+            <param name="prefabType">The prefab type.</param>
+            <returns>The <see cref="T:Exiled.API.Features.Attributes.PrefabAttribute" />.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.PrefabHelper.Spawn(Exiled.API.Enums.PrefabType,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Spawns a prefab on server.
+            </summary>
+            <param name="prefabType">The prefab type.</param>
+            <param name="position">The position to spawn the prefab.</param>
+            <param name="rotation">The rotation of the prefab.</param>
+            <returns>The <see cref="T:UnityEngine.GameObject"/> instantied.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.PrefabHelper.Spawn``1(Exiled.API.Enums.PrefabType,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Spawns a prefab on server.
+            </summary>
+            <param name="prefabType">The prefab type.</param>
+            <param name="position">The position to spawn the prefab.</param>
+            <param name="rotation">The rotation of the prefab.</param>
+            <typeparam name="T">The <see cref="T:UnityEngine.Component"/> type.</typeparam>
+            <returns>The <see cref="T:UnityEngine.Component"/> instantied.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.PrefabHelper.LoadPrefabs">
+            <summary>
+            Loads all prefabs.
+            </summary>
         </member>
         <member name="T:Exiled.API.Features.Ragdoll">
             <summary>
@@ -15571,11 +15864,6 @@
             Gets or sets how mush vigor will be regenerate while moving per seconds.
             </summary>
         </member>
-        <member name="P:Exiled.API.Features.Roles.Scp106Role.AttackDamage">
-            <summary>
-            Gets or sets how mush damage Scp106 will dealt when attacking a player.
-            </summary>
-        </member>
         <member name="P:Exiled.API.Features.Roles.Scp106Role.CorrodingTime">
             <summary>
             Gets or sets the duration of Corroding effect.
@@ -15599,6 +15887,11 @@
         <member name="P:Exiled.API.Features.Roles.Scp106Role.HuntersAtlasCostPerMeter">
             <summary>
             Gets or sets how mush vigor it's ability Hunter Atlas will cost per meter.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Roles.Scp106Role.AttackDamage">
+            <summary>
+            Gets or sets how mush damage Scp106 will dealt when attacking a player.
             </summary>
         </member>
         <member name="P:Exiled.API.Features.Roles.Scp106Role.CaptureCooldown">
@@ -15892,6 +16185,11 @@
         <member name="P:Exiled.API.Features.Roles.Scp3114Role.WarningTime">
             <summary>
             Gets or sets the warning time seconds.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Roles.Scp3114Role.DanceType">
+            <summary>
+            Gets or sets the bound dance.
             </summary>
         </member>
         <member name="M:Exiled.API.Features.Roles.Scp3114Role.ResetIdentity">
@@ -16234,6 +16532,11 @@
             Using that will make sense only for rooms with more than one light controller, in other cases better to use <see cref="P:Exiled.API.Features.Room.RoomLightController"/>.
             </remarks>
         </member>
+        <member name="P:Exiled.API.Features.Room.NearestRooms">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.IReadOnlyList`1"/> of <see cref="T:Exiled.API.Features.Room"/> around the <see cref="T:Exiled.API.Features.Room"/>.
+            </summary>
+        </member>
         <member name="P:Exiled.API.Features.Room.Pickups">
             <summary>
             Gets a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Exiled.API.Features.Pickups.Pickup"/> in the <see cref="T:Exiled.API.Features.Room"/>.
@@ -16283,6 +16586,11 @@
         <member name="P:Exiled.API.Features.Room.RoomLightControllersValue">
             <summary>
             Gets a <see cref="T:System.Collections.Generic.List`1"/> containing all known <see cref="P:Exiled.API.Features.Room.RoomLightController"/>s in that <see cref="T:Exiled.API.Features.Room"/>.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Room.NearestRoomsValue">
+            <summary>
+            Gets a <see cref="T:System.Collections.Generic.List`1"/> containing all known <see cref="T:Exiled.API.Features.Room"/>s around that <see cref="T:Exiled.API.Features.Room"/>.
             </summary>
         </member>
         <member name="M:Exiled.API.Features.Room.Get(Exiled.API.Enums.RoomType)">
@@ -16845,6 +17153,14 @@
             <summary>
             Shutdowns the server, disconnects all players.
             </summary>
+            <seealso cref="M:Exiled.API.Features.Server.ShutdownRedirect(System.UInt16)"/>
+        </member>
+        <member name="M:Exiled.API.Features.Server.Shutdown(System.Boolean,System.Boolean)">
+            <summary>
+            Shutdowns the server, disconnects all players.
+            </summary>
+            <param name="quit">Indicates whether to terminate the application after shutting down the server.</param>
+            <param name="suppressShutdownBroadcast">Indicates whether to suppress the broadcast notification about the shutdown.</param>
             <seealso cref="M:Exiled.API.Features.Server.ShutdownRedirect(System.UInt16)"/>
         </member>
         <member name="M:Exiled.API.Features.Server.RestartRedirect(System.UInt16)">
@@ -17412,6 +17728,16 @@
             Gets or sets a value indicating whether the primitive can be collided with.
             </summary>
         </member>
+        <member name="P:Exiled.API.Features.Toys.Primitive.Visible">
+            <summary>
+            Gets or sets a value indicating whether the primitive is visible.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Features.Toys.Primitive.Flags">
+            <summary>
+            Gets or sets the primitive flags.
+            </summary>
+        </member>
         <member name="M:Exiled.API.Features.Toys.Primitive.Create(System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Vector3},System.Boolean)">
             <summary>
             Creates a new <see cref="T:Exiled.API.Features.Toys.Primitive"/>.
@@ -17449,6 +17775,19 @@
             Creates a new <see cref="T:Exiled.API.Features.Toys.Primitive"/>.
             </summary>
             <param name="primitiveType">The type of primitive to spawn.</param>
+            <param name="position">The position of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
+            <param name="rotation">The rotation of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
+            <param name="scale">The scale of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
+            <param name="spawn">Whether or not the <see cref="T:Exiled.API.Features.Toys.Primitive"/> should be initially spawned.</param>
+            <param name="color">The color of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
+            <returns>The new <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</returns>
+        </member>
+        <member name="M:Exiled.API.Features.Toys.Primitive.Create(UnityEngine.PrimitiveType,AdminToys.PrimitiveFlags,System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Vector3},System.Nullable{UnityEngine.Vector3},System.Boolean,System.Nullable{UnityEngine.Color})">
+            <summary>
+            Creates a new <see cref="T:Exiled.API.Features.Toys.Primitive"/>.
+            </summary>
+            <param name="primitiveType">The type of primitive to spawn.</param>
+            <param name="flags">The primitive flags.</param>
             <param name="position">The position of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
             <param name="rotation">The rotation of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
             <param name="scale">The scale of the <see cref="T:Exiled.API.Features.Toys.Primitive"/>.</param>
@@ -18319,9 +18658,26 @@
             <param name="scale">The scale of the primitive.</param>
             <param name="spawn">Whether or not the primitive should be spawned.</param>
         </member>
+        <member name="M:Exiled.API.Structs.PrimitiveSettings.#ctor(UnityEngine.PrimitiveType,AdminToys.PrimitiveFlags,UnityEngine.Color,UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.API.Structs.PrimitiveSettings"/> struct.
+            </summary>
+            <param name="primitiveType">The type of the primitive.</param>
+            <param name="primitiveFlags">The flags of the primitive.</param>
+            <param name="color">The color of the primitive.</param>
+            <param name="position">The position of the primitive.</param>
+            <param name="rotation">The rotation of the primitive.</param>
+            <param name="scale">The scale of the primitive.</param>
+            <param name="spawn">Whether or not the primitive should be spawned.</param>
+        </member>
         <member name="P:Exiled.API.Structs.PrimitiveSettings.PrimitiveType">
             <summary>
             Gets the primitive type.
+            </summary>
+        </member>
+        <member name="P:Exiled.API.Structs.PrimitiveSettings.Flags">
+            <summary>
+            Gets the primitive flags.
             </summary>
         </member>
         <member name="P:Exiled.API.Structs.PrimitiveSettings.Color">

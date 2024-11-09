@@ -13,6 +13,8 @@ public class cz : ICommand
     public string Command { get; } = "ignorescp682";
     public string[] Aliases { get; } = { "ignorescp682","de682" };
     public string Description { get; } = "放弃SCP682身份";
+    public bool SanitizeResponse { get; }
+
     public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
         if (sender is PlayerCommandSender plr)

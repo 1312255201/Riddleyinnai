@@ -2,17 +2,11 @@
 using Exiled.API.Features;
 using HarmonyLib;
 using Riddleyinnai.Database;
-using Riddleyinnai.Database.Model;
-using Riddleyinnai.Fuctions;
-using Riddleyinnai.Misc;
 using System;
-using System.Net.WebSockets;
-using System.Security.Cryptography;
-using Exiled.API.Features.Doors;
+using Riddleyinnai.Fuctions.Alloction;
 using Riddleyinnai.Fuctions.Items;
 using Riddleyinnai.Fuctions.Map;
 using Riddleyinnai.Fuctions.SpRoleManage;
-using Riddleyinnai.Fuctions.SpRoles;
 using Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
 using Riddleyinnai.Fuctions.SpRoles.CllassD;
 using Riddleyinnai.Fuctions.SpRoles.MTFRoles;
@@ -92,7 +86,7 @@ namespace Riddleyinnai
 
                     Ui.PlayerMain.Register();
                     Scp682Event.Reg();
-                    
+                    RemoteKeycard.Reg();
                     User.Achieve.Main.Register();
                     User.Achieve.Details.Box.Register();
                     User.Achieve.Details.Airlock.Register();
@@ -102,7 +96,7 @@ namespace Riddleyinnai
                     User.Achieve.Details.Escapingpocket.Register(); 
                     User.Achieve.Details.Fallinggod.Register();
                     User.Achieve.Details.Healer.Register();
-                    
+                    NTFHelper.Reg();
                     User.Achieve.Details.Jumpgod.Register();
                     User.Achieve.Details.Killbest.Register();
                     User.Achieve.Details.MulHid.Register();
@@ -166,7 +160,9 @@ namespace Riddleyinnai
                     //Fuctions.SupplyMap.Unregister();
 
                     Misc.killer.Unregister();
-                    Misc.Infammo.Unregister();
+                    Misc.Infammo.Unregister();                    
+                    RemoteKeycard.UnReg();
+
                     Misc.Info914.Unregister();
                     Misc.Warheadrating.Unregister();
                     Misc.Moveboost.Unregister();
@@ -202,6 +198,7 @@ namespace Riddleyinnai
                     Fuctions.Hoilday.Killrank.Unregister();
                     Fuctions.Hoilday.Nospawn.Unregister();
                     DaMa.UnRegister();
+                    NTFHelper.UnReg();
                     gatec.UnRegister();
                     SCP2818.UnRegister();
                     SuperMedik.UnRegister();

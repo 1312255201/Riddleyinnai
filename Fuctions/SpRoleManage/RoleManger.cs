@@ -3,12 +3,9 @@ using Exiled.API.Features;
 using Exiled.API.Features.Roles;
 using Exiled.Events.EventArgs.Player;
 using MEC;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.Fuctions.SpRoleManage
 {
@@ -222,7 +219,7 @@ namespace Riddleyinnai.Fuctions.SpRoleManage
 
         public enum RoleName
         {
-D9341,SCP181,SCPCN08,SCP069,SCP493,SCP2490,SCP1143,SCP550,九尾狐医疗兵,九尾狐狙击手,SCP035,SCP999,SCP682
+D9341,SCP181,SCPCN08,SCP069,SCP493,SCP2490,SCP1143,SCP550,九尾狐医疗兵,九尾狐狙击手,SCP035,SCP999,SCP682,九尾狐支援兵
 
         }
 

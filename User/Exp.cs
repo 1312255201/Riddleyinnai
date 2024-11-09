@@ -1,26 +1,18 @@
-﻿using Exiled.API.Extensions;
-using Exiled.API.Features;
+﻿using Exiled.API.Features;
 using Exiled.API.Features.Roles;
-using Exiled.CreditTags.Features;
 using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp049;
 using Exiled.Events.EventArgs.Scp079;
 using Exiled.Events.EventArgs.Server;
-using Hints;
 using MEC;
 using Riddleyinnai.Database;
-using Riddleyinnai.Fuctions;
 using Riddleyinnai.Ui;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using PlayerRoles;
 using Riddleyinnai.Fuctions.SpRoleManage;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using YinnaiAPI;
 
 namespace Riddleyinnai.User
 {
@@ -429,15 +421,11 @@ namespace Riddleyinnai.User
                 Addexp(ev.Player.UserId, 1, Exptype.复活尸体);
             }
         }
-        public static void OnRoundending(EndingRoundEventArgs ev)
+        public static void OnRoundending(RoundEndedEventArgs ev)
         {
-
-            if(ev.IsRoundEnded)
+            foreach (var item in Player.List.Where(x => !x.IsOverwatchEnabled))
             {
-                foreach (var item in Player.List.Where(x => !x.IsOverwatchEnabled))
-                {
-                    Addexp(item.UserId, 2, Exptype.回合奖励);
-                }
+                Addexp(item.UserId, 2, Exptype.回合奖励);
             }
         }
         public static void OnLeft(LeftEventArgs ev)
@@ -694,7 +682,7 @@ namespace Riddleyinnai.User
             Exiled.Events.Handlers.Player.ChangingRole += Rolechanged;
             Exiled.Events.Handlers.Server.RoundStarted += OnRoundStart;
             Exiled.Events.Handlers.Player.Left += OnLeft;
-            Exiled.Events.Handlers.Server.EndingRound += OnRoundending;
+            Exiled.Events.Handlers.Server.RoundEnded += OnRoundending;
             Exiled.Events.Handlers.Server.WaitingForPlayers += Reset;
             Exiled.Events.Handlers.Player.Verified += Onjoining;
             Exiled.Events.Handlers.Player.Dying += OnDied;
@@ -710,7 +698,7 @@ namespace Riddleyinnai.User
             Exiled.Events.Handlers.Player.Spawned -= SpawnedItems;
             Exiled.Events.Handlers.Player.ChangingRole -= Rolechanged;
             Exiled.Events.Handlers.Player.Left -= OnLeft;
-            Exiled.Events.Handlers.Server.EndingRound -= OnRoundending;
+            Exiled.Events.Handlers.Server.RoundEnded -= OnRoundending;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= Reset;
             Exiled.Events.Handlers.Player.Verified -= Onjoining;
             Exiled.Events.Handlers.Player.Dying -= OnDied;

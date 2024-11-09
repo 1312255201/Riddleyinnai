@@ -1,10 +1,4 @@
 ﻿using Exiled.Events.EventArgs.Player;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Riddleyinnai.User.Exp;
 
 namespace Riddleyinnai.User.Achieve.Details
 {

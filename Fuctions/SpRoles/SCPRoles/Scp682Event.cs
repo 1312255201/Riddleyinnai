@@ -7,9 +7,7 @@ using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
 using Interactables.Interobjects.DoorUtils;
 using MEC;
-using Mirror;
 using PlayerRoles;
-using PlayerRoles.Ragdolls;
 using Riddleyinnai.Fuctions.SpRoleManage;
 using Riddleyinnai.Ui;
 using UnityEngine;
@@ -118,8 +116,15 @@ public class Scp682Event
     {
         if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP682))
         {
-            ev.IsAllowed = false;
-            ev.Player.IsOverwatchEnabled = true;
+            Timing.CallDelayed(0.04f, () =>
+            {
+                if (ev.Player.IsAlive)
+                {
+                 RoleManger.DelRolePlayer(ev.Player.Id);   
+                }
+                ev.Player.IsOverwatchEnabled = true;
+                
+            });
         }
     }
     private static void OnRoundRestart()

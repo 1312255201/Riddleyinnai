@@ -1,12 +1,8 @@
 ﻿using CommandSystem;
-using Discord;
-using Exiled.API.Enums;
 using Exiled.API.Features;
-using MEC;
 using Riddleyinnai.Database;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Riddleyinnai.Fuctions.SpRoleManage;
 using UnityEngine;
@@ -21,6 +17,7 @@ namespace Riddleyinnai.User
         public string Command => "hidebadge";
 
         public string[] Aliases => new string[] { "hide" };
+        public bool SanitizeResponse { get; }
 
         public string Description => "隐藏自己的称号";
 

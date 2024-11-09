@@ -1,11 +1,6 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Scp914;
 using Scp914;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.Misc
 {

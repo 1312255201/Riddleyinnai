@@ -96,6 +96,11 @@ public class SCP035Event
             if (ev.Door.Type is DoorType.Scp914Gate)
             {
                 ev.IsAllowed = false;
+                ev.Door.Lock(0.1f,DoorLockType.AdminCommand);
+                if (ev.Door.IsOpen)
+                {
+                    ev.Door.IsOpen = false;
+                }
             }
         }
     }

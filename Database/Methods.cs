@@ -1,18 +1,6 @@
-﻿using CommandSystem.Commands.RemoteAdmin.Decontamination;
-using Discord;
-using Exiled.API.Features;
-using Hints;
-using Newtonsoft.Json;
-using Riddleyinnai.Database.Model;
-using Riddleyinnai.User;
-using System;
+﻿using Exiled.API.Features;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YinnaiAPI;
-using Badge = Riddleyinnai.Database.Model.Badge;
-using User = Riddleyinnai.Database.Model.User;
 
 namespace Riddleyinnai.Database
 {

@@ -170,13 +170,13 @@ public class SCP550Event
     private static void OnPickingUpItem(PickingUpItemEventArgs ev)
     {
         if (!RoleManger.IsRole(ev.Player.Id,RoleManger.RoleName.SCP550)) return;
-        if (ev.Pickup.Type.IsArmor() || ev.Pickup.Type is ItemType.SCP268 || ev.Pickup.Type.IsKeycard() ||
+        /*if (ev.Pickup.Type.IsArmor() || ev.Pickup.Type is ItemType.SCP268 || ev.Pickup.Type.IsKeycard() ||
             (ev.Pickup.Type is ItemType.GunCOM15 or ItemType.GunCOM18 or ItemType.GunRevolver or ItemType.GunCom45 or ItemType.GunCrossvec)
                  || ev.Pickup.Type.IsAmmo() || ev.Pickup.Type.IsMedical() ||
             ev.Pickup.Type.IsThrowable())
         {
             return;
-        }
+        }*/
         ev.IsAllowed = false;
     }
     private static void OnPlayerShooting(ShootingEventArgs ev)

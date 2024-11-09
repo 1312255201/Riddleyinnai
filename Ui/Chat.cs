@@ -3,11 +3,7 @@ using Exiled.API.Extensions;
 using Exiled.API.Features;
 using PlayerRoles;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Riddleyinnai.Ui
 {
@@ -16,6 +12,7 @@ namespace Riddleyinnai.Ui
     public class ChatCommand3 : ICommand
     {
         public string Command => "ac";
+        public bool SanitizeResponse { get; }
 
         public string[] Aliases => new string[] { };
 
@@ -55,6 +52,7 @@ namespace Riddleyinnai.Ui
         public string Command => "bc";
 
         public string[] Aliases => new string[] { };
+        public bool SanitizeResponse { get; }
 
         public string Description => "发送全体聊天信息 用法.bc [聊天内容]";
 
@@ -91,6 +89,7 @@ namespace Riddleyinnai.Ui
     public class ChatCommand2 : ICommand
     {
         public string Command => "c";
+        public bool SanitizeResponse { get; }
 
         public string[] Aliases => new string[] { };
 

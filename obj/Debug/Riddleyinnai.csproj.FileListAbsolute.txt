@@ -170,6 +170,6 @@ D:\WorkSpace\source\repos\Riddleyinnai\bin\Debug\Exiled.Permissions.xml
 D:\WorkSpace\source\repos\Riddleyinnai\bin\Debug\Newtonsoft.Json.xml
 D:\WorkSpace\source\repos\Riddleyinnai\obj\Debug\Riddleyinnai.csproj.AssemblyReference.cache
 D:\WorkSpace\source\repos\Riddleyinnai\obj\Debug\Riddleyinnai.csproj.CoreCompileInputs.cache
-D:\WorkSpace\source\repos\Riddleyinnai\obj\Debug\Riddleyinnai.csproj.CopyComplete
 D:\WorkSpace\source\repos\Riddleyinnai\obj\Debug\Riddleyinnai.dll
 D:\WorkSpace\source\repos\Riddleyinnai\obj\Debug\Riddleyinnai.pdb
+D:\WorkSpace\source\repos\Riddleyinnai\obj\Debug\Riddleyi.BADA35F0.Up2Date

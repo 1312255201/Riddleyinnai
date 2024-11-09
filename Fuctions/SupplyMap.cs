@@ -89,28 +89,28 @@ namespace Riddleyinnai.Fuctions
         {
             var spawnpoint = Door.Get(Exiled.API.Enums.DoorType.LczArmory).Position;
             var dic_pos = new Dictionary<ItemType, List<Tuple<Vector3, Vector3>>>
-{
-    {
-        ItemType.GunFSP9, new List<Tuple<Vector3, Vector3>>
-        {
-            new Tuple<Vector3, Vector3>(new Vector3(-2.98399997f, 1.52699995f, 1.46800005f), new Vector3(0, 0, 0)),
-            new Tuple<Vector3, Vector3>(new Vector3(2.86999989f, 1.52699995f, 1.47000003f), new Vector3(0, 0, 0))
-        }
-    },
-    {
-        ItemType.GunCrossvec, new List<Tuple<Vector3, Vector3>>
-        {
-            new Tuple<Vector3, Vector3>(new Vector3(-0.300000012f, 1.52699995f, 5.73999977f), new Vector3(0, 0, 0)),
-            new Tuple<Vector3, Vector3>(new Vector3(0.245000005f, 1.52699995f, 5.73999977f), new Vector3(0, 0, 0))
-        }
-    },
-    {
-        ItemType.GunAK, new List<Tuple<Vector3, Vector3>>
-        {
-            new Tuple<Vector3, Vector3>(new Vector3(-0.143000007f, 1.48000002f, 3.2809999f), new Vector3(0, 0, 0))
-        }
-    }
-};
+            {
+                {
+                    ItemType.GunFSP9, new List<Tuple<Vector3, Vector3>>
+                    {
+                        new Tuple<Vector3, Vector3>(new Vector3(-2.98399997f, 1.52699995f, 1.46800005f), new Vector3(0, 0, 0)),
+                        new Tuple<Vector3, Vector3>(new Vector3(2.86999989f, 1.52699995f, 1.47000003f), new Vector3(0, 0, 0))
+                    }
+                },
+                {
+                    ItemType.GunCrossvec, new List<Tuple<Vector3, Vector3>>
+                    {
+                        new Tuple<Vector3, Vector3>(new Vector3(-0.300000012f, 1.52699995f, 5.73999977f), new Vector3(0, 0, 0)),
+                        new Tuple<Vector3, Vector3>(new Vector3(0.245000005f, 1.52699995f, 5.73999977f), new Vector3(0, 0, 0))
+                    }
+                },
+                {
+                    ItemType.GunAK, new List<Tuple<Vector3, Vector3>>
+                    {
+                        new Tuple<Vector3, Vector3>(new Vector3(-0.143000007f, 1.48000002f, 3.2809999f), new Vector3(0, 0, 0))
+                    }
+                }
+            };
 
             foreach (var item in dic_pos)
             {

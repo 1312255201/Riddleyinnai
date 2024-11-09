@@ -1,20 +1,13 @@
-﻿using Exiled.API.Extensions;
+﻿using System.Collections.Generic;
+using Exiled.API.Extensions;
 using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Map;
 using Exiled.Events.EventArgs.Server;
-using InventorySystem.Items.Pickups;
 using MEC;
 using PlayerRoles.Ragdolls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Exiled.API.Features;
-using Riddleyinnai.Fuctions.Items;
 using Riddleyinnai.Ui;
 using Riddleyinnai.YYYApi;
-using UnityEngine;
 
 namespace Riddleyinnai.Fuctions
 {
@@ -23,6 +16,8 @@ namespace Riddleyinnai.Fuctions
         public static int Delay = 180;
 
         public static bool BeginFlag = false;
+
+        public static List<ushort> roundstartItems = new();
 
         public static void Reset()
         {
@@ -44,7 +39,7 @@ namespace Riddleyinnai.Fuctions
                         foreach(var pickup in Pickup.List)
                         {
                             if(pickup.isSpesialItem() || pickup.Type.IsScp() || pickup.Type.IsThrowable() || pickup.Type == ItemType.ArmorHeavy || pickup.Type == ItemType.GunFRMG0 || pickup.Type == ItemType.GunLogicer
-                            || pickup.Type == ItemType.Medkit || pickup.Type == ItemType.KeycardO5 || pickup.Type == ItemType.KeycardFacilityManager)
+                            || pickup.Type == ItemType.Medkit || pickup.Type == ItemType.KeycardO5 || pickup.Type == ItemType.KeycardFacilityManager || roundstartItems.Contains(pickup.Serial) || pickup.Serial == 0)
                             {
                                 continue;
                             }
@@ -83,17 +78,28 @@ namespace Riddleyinnai.Fuctions
                 }
             }
         }
+
+        private static void OnRoundStart()
+        {
+            roundstartItems.Clear();
+            foreach (var varpick in Pickup.List)
+            {
+                roundstartItems.Add(varpick.Serial);
+            }
+        }
         public static void Register()
         {
             Exiled.Events.Handlers.Map.AnnouncingDecontamination += LczLocked;
             Exiled.Events.Handlers.Server.WaitingForPlayers += Reset;
             Exiled.Events.Handlers.Server.RespawningTeam += ClearRagDoll;
+            Exiled.Events.Handlers.Server.RoundStarted += OnRoundStart;
         }
         public static void Unregister()
         {
             Exiled.Events.Handlers.Map.AnnouncingDecontamination -= LczLocked;
             Exiled.Events.Handlers.Server.WaitingForPlayers -= Reset;
             Exiled.Events.Handlers.Server.RespawningTeam -= ClearRagDoll;
+            Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStart;
         }
     }
 }

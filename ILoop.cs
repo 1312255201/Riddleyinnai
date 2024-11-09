@@ -1,17 +1,11 @@
 ﻿using Exiled.API.Features;
-using Exiled.API.Features.Items;
 using Exiled.Events.EventArgs.Server;
-using Hints;
-using InventorySystem.Items.Usables;
 using MEC;
 using Riddleyinnai.Fuctions;
 using Riddleyinnai.Misc;
 using Riddleyinnai.User;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai
 {

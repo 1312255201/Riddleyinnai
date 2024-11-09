@@ -44,7 +44,6 @@ public class D9341Events
             D9341Items.Add(item.Type);
         }
         player.RankName = "D-9341";
-        player.RankColor = "orange";
         Ui.PlayerMain.Send(player, $"<color=#FFFFCC>你是:</color><color=#FFCC66>[SCP-d9341]</color>\n<color=#FFFFCC>1.存档：右键丢弃</color><color=#FF3333>一枚硬币后</color><color=#FFFFCC>保存一次角色此时的状态</color>\n<color=#FFFFCC>2.读档：右键</color><color=#FF3333>手电筒后</color><color=#FFFFCC>读取上一次存档状态，手电筒开局cd5分钟</color>\n<color=#FFFFCC>3.死亡读档：若角色已经存档，在</color><color=#FF3333>死亡后</color><color=#FFFFCC>读取上一次存档状态，但失去角色特性</color>",15,Ui.Pos.正中偏下,5);
     }
 

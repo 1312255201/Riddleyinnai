@@ -1,13 +1,8 @@
 ﻿using CommandSystem;
-using Exiled.API.Enums;
 using Exiled.API.Features.DamageHandlers;
 using PlayerRoles;
-using PlayerStatsSystem;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.Misc
 {

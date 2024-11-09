@@ -1,14 +1,4 @@
-﻿using Exiled.API.Features;
-using Riddleyinnai.Database;
-using Riddleyinnai.Database.Model;
-using Riddleyinnai.Ui;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Riddleyinnai.User
+﻿namespace Riddleyinnai.User
 {
     internal class Permission
     {

@@ -1,7 +1,6 @@
 ﻿using Exiled.API.Extensions;
 using Exiled.API.Features;
 using Exiled.API.Features.Roles;
-using MEC;
 using PlayerRoles;
 using Respawning;
 using Riddleyinnai.User;
@@ -221,7 +220,7 @@ namespace Riddleyinnai.Ui
                                     }
                                     linecount++;
                                     scpcount++;
-                                    msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>等级</b> " + level + " 电量 " + "<color=#6699ff>" + power + "</color>" + "</size></align><b>";
+                                    msgshow = "<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>等级</b> " + level + " 电量 " + "<color=#6699ff>" + (int)power + "</color>" + "</size></align><b>\n"+msgshow;
                                 }
                                 else if (p.Role.Type != RoleTypeId.Scp0492)
                                 {
@@ -246,7 +245,14 @@ namespace Riddleyinnai.Ui
                                     }
                                     linecount++;
                                     scpcount++;
-                                    msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + " HS " + "<color=#6699ff>" + p.HumeShield + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
+                                    if (p.Role.Type == RoleTypeId.Scp096)
+                                    {
+                                        msgshow = "<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + (int)p.Health + "</color>" + " HS " + "<color=#6699ff>" + (int)p.HumeShield + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>\n"+msgshow;
+                                    }
+                                    else
+                                    {
+                                        msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + p.Role.Type + "</color>" + "<b>]</b> <b>HP</b> " + $"<color={healthcolor}>" + (int)p.Health + "</color>" + " HS " + "<color=#6699ff>" + (int)p.HumeShield + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
+                                    }
                                 }
                             }
                             else
@@ -272,9 +278,8 @@ namespace Riddleyinnai.Ui
                                 }
                                 linecount++;
                                 scpcount++;
-                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + RoleManger.GetRole(p.Id) + "</color>" + "<b>]" +p.Nickname+"</b> <b>HP</b> " + $"<color={healthcolor}>" + p.Health + "</color>" + "  " + "<color=#6699ff> AHP: " + p.ArtificialHealth + "</color>" + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
+                                msgshow += "\n<b><align=right><size=23><b>[</b>" + "<color=#cc0000>" + RoleManger.GetRole(p.Id) + "</color>" + "<b>]" +p.Nickname+"</b> <b>HP</b> " + $"<color={healthcolor}>" + (int)p.Health + "</color>" + "  " + (p.ArtificialHealth > 0 ?("<color=#6699ff> AHP: " + (int)p.ArtificialHealth + "</color>"): "") + $"[<color=#FF0000>{zone}</color>]" + "</size></align></b>";
                             }
-
                         }
                         var zombies = Player.Get(x => x.Role.Type == RoleTypeId.Scp0492).Count();
                         if (Player.Get(x => x.Role.Type == RoleTypeId.Scp0492).Any())

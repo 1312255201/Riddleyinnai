@@ -1,13 +1,8 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Server;
-using Exiled.Events.Handlers;
 using MEC;
-using Riddleyinnai.User;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Riddleyinnai.Fuctions
@@ -76,15 +71,6 @@ namespace Riddleyinnai.Fuctions
             }
             yield break;
         }
-        public static void Endinground(EndingRoundEventArgs ev)
-        {
-            if(ev.IsRoundEnded)
-            {
-                Timing.KillCoroutines(cor);
-                Timing.KillCoroutines(cor2);
-                Timing.KillCoroutines(cor3);
-            }
-        }
         public static void OnRoundEnded(RoundEndedEventArgs ev)
         {
             if(cor.IsRunning)
@@ -103,14 +89,12 @@ namespace Riddleyinnai.Fuctions
         public static void Register()
         {
             Exiled.Events.Handlers.Server.RoundStarted += Roundstart;
-            Exiled.Events.Handlers.Server.EndingRound += Endinground;
             Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnded;
         }
         public static void Unregister()
         {
             Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnded;
             Exiled.Events.Handlers.Server.RoundStarted -= Roundstart;
-            Exiled.Events.Handlers.Server.EndingRound -= Endinground;
         }
     }
 }

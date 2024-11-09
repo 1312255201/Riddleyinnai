@@ -16,6 +16,7 @@ namespace Riddleyinnai.User.Achieve
         public string[] Aliases => new string[] { "ach"};
 
         public string Description => "查询用户的成就完成情况";
+        public bool SanitizeResponse { get; }
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

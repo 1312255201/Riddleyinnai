@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Riddleyinnai.Database.Model
+﻿namespace Riddleyinnai.Database.Model
 {
     public class Guaranteed
     {

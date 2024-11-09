@@ -1,12 +1,6 @@
 ﻿using Exiled.API.Extensions;
 using Exiled.API.Features;
-using MapEditorReborn.API.Extensions;
-using MEC;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.Misc
 {

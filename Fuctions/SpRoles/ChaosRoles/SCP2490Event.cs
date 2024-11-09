@@ -12,7 +12,6 @@ using MapGeneration;
 using MEC;
 using PlayerRoles;
 using Riddleyinnai.Fuctions.SpRoleManage;
-using Riddleyinnai.YYYApi;
 using UnityEngine;
 
 namespace Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
@@ -99,7 +98,7 @@ public class SCP2490Event
                     List<Player> awa2 = new List<Player>();
                     foreach (var pl in Player.List)
                     {
-                        if (pl.IsAlive && pl.Role.Team != ev.Player.Role.Team && pl.Role.Type != RoleTypeId.ClassD)
+                        if (pl.IsAlive && pl.Role.Team != ev.Player.Role.Team && pl.Role.Type != RoleTypeId.ClassD && pl.Role.Type !=RoleTypeId.Scp079)
                         {
                             awa.Add(pl);
                         }
@@ -127,7 +126,7 @@ public class SCP2490Event
                     List<Player> awa2 = new List<Player>();
                     foreach (var pl in Player.List)
                     {
-                        if (pl.IsAlive && pl.Role.Team == ev.Player.Role.Team && pl.Role.Type == RoleTypeId.ClassD)
+                        if (pl.IsAlive && pl.Role.Team == ev.Player.Role.Team && pl.Role.Type == RoleTypeId.ClassD&& pl.Role.Type !=RoleTypeId.Scp079)
                         {
                             awa.Add(pl);
                         }

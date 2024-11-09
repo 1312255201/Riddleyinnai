@@ -1,13 +1,7 @@
 ﻿using Exiled.API.Features;
 using Exiled.Events.EventArgs.Server;
 using MEC;
-using PlayerStatsSystem;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.Fuctions
 {
@@ -33,20 +27,14 @@ namespace Riddleyinnai.Fuctions
         }
         public static void Roundstart()
         {
-            cor = Timing.RunCoroutine(Sys_Warhead());
-        }
-        public static void Endinground(EndingRoundEventArgs ev)
-        {
-            if (ev.IsRoundEnded)
-            {
-                if (cor.IsRunning)
-                {
-                    Timing.KillCoroutines(cor);
-                }
-            }
+           // cor = Timing.RunCoroutine(Sys_Warhead());
         }
         public static void OnRoundEnded(RoundEndedEventArgs ev)
         {
+            if (cor.IsRunning)
+            {
+                Timing.KillCoroutines(cor);
+            }   
             Timing.KillCoroutines(cor);
         }
         public static void Register()
@@ -54,13 +42,11 @@ namespace Riddleyinnai.Fuctions
             Warheadtime = Main.Singleton.Config.Syswarhead;
 
             Exiled.Events.Handlers.Server.RoundStarted += Roundstart;
-            Exiled.Events.Handlers.Server.EndingRound += Endinground;
             Exiled.Events.Handlers.Server.RoundEnded += OnRoundEnded;
         }
         public static void Unregister()
         {
             Exiled.Events.Handlers.Server.RoundStarted -= Roundstart;
-            Exiled.Events.Handlers.Server.EndingRound -= Endinground;
             Exiled.Events.Handlers.Server.RoundEnded -= OnRoundEnded;
         }
     }

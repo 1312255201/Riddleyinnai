@@ -1,7 +1,6 @@
 ﻿using System;
 using CommandSystem;
 using Exiled.API.Features;
-using MEC;
 using RemoteAdmin;
 using Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
 using Riddleyinnai.Fuctions.SpRoles.CllassD;
@@ -20,6 +19,7 @@ namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
         public string Command { get; } = "spawnscp";
         public string[] Aliases { get; } = { "spawnscp" };
         public string Description { get; } = "管理员指令 用于调试刷特殊角色";
+        public bool SanitizeResponse { get; }
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -35,7 +35,7 @@ namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
             }
             if(arguments.Count < 1)
             {
-                player.RemoteAdminMessage("使用教程\nspawnscp [角色] [id] id可不填默认为自己\n角色列表scp682 scp035 ntfsniper ntfhealther scp550 scp2490 scp1143 d9341 scp069 scp181 scp493 scpcn08");
+                player.RemoteAdminMessage("使用教程\nspawnscp [角色] [id] id可不填默认为自己\n角色列表 zhiyuan scp682 scp035 ntfsniper ntfhealther scp550 scp2490 scp1143 d9341 scp069 scp181 scp493 scpcn08");
                 response = "参数不足";
                 return false;
             }
@@ -48,6 +48,9 @@ namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
                 }
                 switch(arguments.At(0))
                 {
+                    case"zhiyuan":
+                        NTFHelper.SpawnAHelper(awaplayer);
+                        break;
                     case "scp682":
                         Scp682Event.SpawnAScp682(awaplayer);
                         break;

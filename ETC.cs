@@ -6,19 +6,14 @@ using Respawning;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Exiled.API.Enums;
 using Exiled.API.Extensions;
-using Exiled.API.Features.DamageHandlers;
 using Exiled.API.Features.Items;
 using Exiled.API.Features.Pickups;
 using Exiled.API.Features.Roles;
 using PlayerRoles;
-using PlayerStatsSystem;
 using Riddleyinnai.Fuctions.Items;
 using Riddleyinnai.Fuctions.SpRoleManage;
-using Riddleyinnai.Fuctions.SpRoles;
 using Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
 using Riddleyinnai.Fuctions.SpRoles.CllassD;
 using Riddleyinnai.Fuctions.SpRoles.MTFRoles;
@@ -26,37 +21,39 @@ using Riddleyinnai.Fuctions.SpRoles.Scientists;
 using Riddleyinnai.Fuctions.SpRoles.SCPRoles;
 using Riddleyinnai.Fuctions.SpRoles.Tutroles;
 using UnityEngine;
-using FirearmDamageHandler = PlayerStatsSystem.FirearmDamageHandler;
 
 namespace Riddleyinnai
 {
     internal class ETC
     {
         public static Riddleyinnai.YinNaiConfig AwaYinNaiConfig;
+        public static int teamrespawntime;
         public static void Onhurting(HurtingEventArgs ev)
         {
             bool isscp2818 = false;
-            if (ev.Attacker != null)
+            if (ev.Player != null)
             {
-                if (ev.Attacker.Role.Type == PlayerRoles.RoleTypeId.ClassD && ev.Player.Role.Type == PlayerRoles.RoleTypeId.Scientist)
+                if (ev.Attacker != null)
                 {
-                    ev.IsAllowed = false;
-                }
-                else if (ev.Attacker.Role.Type == PlayerRoles.RoleTypeId.Scientist && ev.Player.Role.Type == PlayerRoles.RoleTypeId.ClassD)
-                {
-                    ev.IsAllowed = false;
-                }
-            }
-            //伤害量处理
-            if (ev.Attacker != null)
-            {
-                if (ev.Attacker.CurrentItem != null && Scp127.items.ContainsKey(ev.Attacker.CurrentItem.Serial))
-                {
-                    if (ev.DamageHandler.Type.IsWeapon())
+                    if (ev.Attacker.Role.Type == PlayerRoles.RoleTypeId.ClassD && ev.Player.Role.Type == PlayerRoles.RoleTypeId.Scientist)
                     {
-                        ev.Amount *= 1.5f;
+                        ev.IsAllowed = false;
+                    }
+                    else if (ev.Attacker.Role.Type == PlayerRoles.RoleTypeId.Scientist && ev.Player.Role.Type == PlayerRoles.RoleTypeId.ClassD)
+                    {
+                        ev.IsAllowed = false;
                     }
                 }
+                //伤害量处理
+                if (ev.Attacker != null)
+                {
+                    if (ev.Attacker.CurrentItem != null && Scp127.items.ContainsKey(ev.Attacker.CurrentItem.Serial))
+                    {
+                        if (ev.DamageHandler.Type.IsWeapon())
+                        {
+                            ev.Amount *= 1.5f;
+                        }
+                    }
 
                 if (RoleManger.IsRole(ev.Attacker.Id, RoleManger.RoleName.SCP682))
                 {
@@ -106,10 +103,10 @@ namespace Riddleyinnai
                             }
                             if (ev.Player.Role.Team == Team.SCPs)
                             {
-                                ev.Amount = 1000;
+                                ev.Amount = 300;
                                 if (flag)
                                 {
-                                    ev.Amount *= 3;
+                                    ev.Amount =  800;
                                 }
                                 if (ev.Player.Role.Type == RoleTypeId.Scp106)
                                 {
@@ -118,10 +115,10 @@ namespace Riddleyinnai
                             }
                             else
                             {
-                                ev.Amount = 3500;
+                                ev.Amount = 300;
                                 if (flag)
                                 {
-                                    ev.Amount *= 3;
+                                    ev.Amount = 800;
                                 }
                             }
                             if (flag)
@@ -147,10 +144,10 @@ namespace Riddleyinnai
                         }
                     }
                 }
-            }
-            //抗性处理
-            if (ev.Amount > 0)
-            {
+                }
+                //抗性处理
+                if (ev.Amount > 0)
+                {
                 if (RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP550))
                 {
                     ev.Amount *= 0.5f;
@@ -289,9 +286,13 @@ namespace Riddleyinnai
                 {
                     if (ev.Amount > 0)
                     {
-                        ev.Attacker.Health +=
-                            ((ev.Amount * 0.25f) * (1f - ((ev.Attacker.Health) / (ev.Attacker.Health + 80))));
-                        ev.Attacker.ArtificialHealth += (ev.Amount * 0.15f);
+                        if (!RoleManger.IsRole(ev.Player.Id, RoleManger.RoleName.SCP999) &&
+                            ev.Player.Role.Type != RoleTypeId.Tutorial)
+                        {
+                            ev.Attacker.Health +=
+                                ((ev.Amount * 0.25f) * (1f - ((ev.Attacker.Health) / (ev.Attacker.Health + 80))));
+                            ev.Attacker.ArtificialHealth += (ev.Amount * 0.15f);
+                        }
                     }
                 }
             }
@@ -300,20 +301,27 @@ namespace Riddleyinnai
                 if (RoleManger.IsRole(ev.Attacker.Id, RoleManger.RoleName.SCP999))
                 {
                     ev.Amount = 0;
-                    ev.Player.Heal(new System.Random().Next(1,5));
+                    if (ev.Player.Role.Team == Team.SCPs)
+                    {
+                        ev.Player.Heal(0.5f);
+                    }
+                    else
+                    {
+                        ev.Player.Heal(1);
+                    }
                 }
             }
             if (ev.Amount <= -0.5f)
             {
                 ev.Amount = -1;
             }
-        }
-        public static void OnTeamspawn(RespawningTeamEventArgs ev)
-        {
-            Timing.CallDelayed(1f, () => { Respawning.RespawnTokensManager.ResetTokens(); });
+            }
+            //ok
         }
         public static void OnRespawningTeam(RespawningTeamEventArgs ev)
         {
+            Timing.CallDelayed(1f, () => { Respawning.RespawnTokensManager.ResetTokens(); });
+            teamrespawntime++;
             if (ev.NextKnownTeam == SpawnableTeamType.ChaosInsurgency)
             {
                 Timing.CallDelayed(1f, () =>
@@ -329,6 +337,19 @@ namespace Riddleyinnai
             }
 
             if (ev.NextKnownTeam == SpawnableTeamType.ChaosInsurgency)
+            {
+                Timing.CallDelayed(1f, () => {                     
+                    if (Player.List.Count() >= AwaYinNaiConfig.scp2490minnum)
+                    {
+                        if (!SCP2490Event.scp2490spawnyes)
+                        {
+                            SCP2490Event.SpawnAScp2490(YYYApi.MyApi.GetRamdomDeadPlayer());
+                        }
+                    } 
+                });
+            }
+
+            if (teamrespawntime == 3)
             {
                 
             }
@@ -371,6 +392,17 @@ namespace Riddleyinnai
                             NTFsniper.SpawnASniper(variPlayer);
                         }
                     }
+
+                    if (tiems == 4)
+                    {
+                        if (Player.List.Count() >= AwaYinNaiConfig.ntfhelperminnum)
+                        {
+                            if (new System.Random().Next(1, 100) >= 60)
+                            {
+                                NTFHelper.SpawnAHelper(variPlayer);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -388,6 +420,7 @@ namespace Riddleyinnai
 
         private static void OnRoundStart()
         {
+            teamrespawntime = 0;
             Log.Info("回合开始");
             Timing.RunCoroutine(CheckTiming());
             Log.Info("外面执行了");
@@ -513,10 +546,10 @@ namespace Riddleyinnai
                             }
                             break;
                         default:
-                            if (new System.Random(Environment.TickCount + player.Id).Next(1, 100) >= 80)
+                            /*if (new System.Random(Environment.TickCount + player.Id).Next(1, 100) >= 80)
                             {
                                 LieSheDan.GiveItem(player);
-                            }
+                            }*/
                             break;
                     }
                 }
@@ -529,14 +562,7 @@ namespace Riddleyinnai
                 ppp = YYYApi.MyApi.GetRamdomDeadPlayer();
             }
 
-            if (Player.List.Count() >= AwaYinNaiConfig.scp2490minnum)
-            {
-                if (!SCP2490Event.scp2490spawnyes)
-                {
-                    SCP2490Event.scp2490spawnyes = true;
-                    SCP2490Event.SpawnAScp2490(ppp);
-                }
-            }
+
         }
 
         private static void OnPLayerDying(DyingEventArgs ev)
@@ -578,7 +604,10 @@ namespace Riddleyinnai
                         {
                             if (!Scp682Event.spawned)
                             {
-                                Scp682Event.SpawnAScp682(YYYApi.MyApi.GetRamdomDeadPlayer());
+                                if (!Player.List.Any(x => x.Role.Type != RoleTypeId.Scp939))
+                                {
+                                    Scp682Event.SpawnAScp682(YYYApi.MyApi.GetRamdomDeadPlayer());
+                                }
                             }
                         } });
                 }
@@ -600,29 +629,44 @@ namespace Riddleyinnai
 
         private static void OnRoundEnding(EndingRoundEventArgs ev)
         {
-            bool scp = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.Scp);
-            bool ntf = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.Mtf);
-            bool chaos = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.ChaosInsurgency && !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP493)&& !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP2490));
+            bool scp = Player.List.Any(x => RoleManger.GetSide(x.Id) == Side.Scp && x.IsAlive && x.Role.Type != RoleTypeId.Overwatch);
+            bool ntf = Player.List.Any(x => x.Role.Side == Side.Mtf);
+            bool chaos = Player.List.Any(x => x.Role.Team == Team.ChaosInsurgency  && x.Role.Type != RoleTypeId.ClassD && !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP493)&& !RoleManger.IsRole(x.Id,RoleManger.RoleName.SCP2490));
             bool dd = Player.List.Any(x => x.Role.Type == RoleTypeId.ClassD);
-            if (scp && !ntf && !dd)
+            if (scp && !ntf && !dd && (!chaos || (Player.List.Count(x=>x.Role.Team == Team.ChaosInsurgency) < Player.List.Count() /5)))
             {
+                ev.LeadingTeam = LeadingTeam.Anomalies;
                 ev.IsAllowed = true;
+                ev.IsRoundEnded = true;
             }
-            else if (ntf && !dd && !scp)
+            else if (ntf && !dd && !scp&& (!chaos))
             {
+                ev.LeadingTeam = LeadingTeam.FacilityForces;
                 ev.IsAllowed = true;
+                ev.IsRoundEnded = true;
             }
-            else if (chaos && !ntf && !dd)
+            else if (chaos && !ntf && !(scp && dd))
             {
+                ev.LeadingTeam = LeadingTeam.ChaosInsurgency;
                 ev.IsAllowed = true;
+                ev.IsRoundEnded = true;
             }
             else if(!scp && !ntf && !chaos && !dd)
             {
+                ev.LeadingTeam = LeadingTeam.Draw;
                 ev.IsAllowed = true;
+                ev.IsRoundEnded = true;
+            }
+            else if (!scp && !ntf && !chaos)
+            {
+                ev.LeadingTeam = LeadingTeam.Draw;
+                ev.IsAllowed = true;
+                ev.IsRoundEnded = true;
             }
             else
             {
                 ev.IsAllowed = false;
+                ev.IsRoundEnded = false;
             }
         }
         public static void Register()
@@ -633,7 +677,6 @@ namespace Riddleyinnai
             Exiled.Events.Handlers.Player.Hurting += Onhurting;
             Exiled.Events.Handlers.Player.Dying += OnPLayerDying;
             Exiled.Events.Handlers.Player.EnteringPocketDimension += OnPlayerEnteringPocket;
-            Exiled.Events.Handlers.Server.RespawningTeam += OnTeamspawn;
             Exiled.Events.Handlers.Server.RoundStarted += OnRoundStart;
             Exiled.Events.Handlers.Server.EndingRound += OnRoundEnding;
         }
@@ -642,7 +685,6 @@ namespace Riddleyinnai
             Exiled.Events.Handlers.Player.Hurting -= Onhurting;
             Exiled.Events.Handlers.Player.Dying -= OnPLayerDying;
             Exiled.Events.Handlers.Player.EnteringPocketDimension -= OnPlayerEnteringPocket;
-            Exiled.Events.Handlers.Server.RespawningTeam -= OnTeamspawn;
             Exiled.Events.Handlers.Server.RoundStarted -= OnRoundStart;
             Exiled.Events.Handlers.Server.EndingRound -= OnRoundEnding;
         }

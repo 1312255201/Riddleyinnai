@@ -1,11 +1,7 @@
-﻿using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
+﻿using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Server;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.User.Achieve.Details
 {
@@ -30,26 +26,24 @@ namespace Riddleyinnai.User.Achieve.Details
                 }
             }
         }
-        public static void Roundending(EndingRoundEventArgs ev)
+        public static void Roundending(RoundEndedEventArgs ev)
         {
-            if(ev.IsRoundEnded)
-            {
-                var target = Kills.OrderByDescending(x => x.Value).FirstOrDefault();
-                Main.UpdateAchievement(target.Key, new Database.Model.Achieve() { id = 3, name = "战神", description = "本回合击杀数最多", status = true, count = 0, hide = false, progress = 0 });
-            }
+            var target = Kills.OrderByDescending(x => x.Value).FirstOrDefault();
+            Main.UpdateAchievement(target.Key, new Database.Model.Achieve() { id = 3, name = "战神", description = "本回合击杀数最多", status = true, count = 0, hide = false, progress = 0 });
+
         }
 
         public static void Register()
         {
             Exiled.Events.Handlers.Server.WaitingForPlayers += Reset;
             Exiled.Events.Handlers.Player.Died += OnDied;
-            Exiled.Events.Handlers.Server.EndingRound += Roundending;
+            Exiled.Events.Handlers.Server.RoundEnded += Roundending;
         }
         public static void Unregister()
         {
             Exiled.Events.Handlers.Server.WaitingForPlayers -= Reset;
             Exiled.Events.Handlers.Player.Died -= OnDied;
-            Exiled.Events.Handlers.Server.EndingRound -= Roundending;
+            Exiled.Events.Handlers.Server.RoundEnded -= Roundending;
         }
     }
 }

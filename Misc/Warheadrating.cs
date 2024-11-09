@@ -90,23 +90,23 @@ namespace Riddleyinnai.Misc
         private static List<Status> status = new List<Status>();
         private static CoroutineHandle cor;
 
-        public static void Roundend(EndingRoundEventArgs ev)
+        public static void Roundend(RoundEndedEventArgs ev)
         {
-            if (cor.IsRunning && ev.IsRoundEnded)
-            { 
+            if (cor.IsRunning)
+            {
                 Timing.KillCoroutines(cor);
             }
         }
         public static void Register()
         {
             Exiled.Events.Handlers.Server.RoundStarted += Roundstart;
-            Exiled.Events.Handlers.Server.EndingRound += Roundend;
+            Exiled.Events.Handlers.Server.RoundEnded += Roundend;
 
         }
         public static void Unregister()
         {
             Exiled.Events.Handlers.Server.RoundStarted -= Roundstart;
-            Exiled.Events.Handlers.Server.EndingRound -= Roundend;
+            Exiled.Events.Handlers.Server.RoundEnded -= Roundend;
         }
     }
 }

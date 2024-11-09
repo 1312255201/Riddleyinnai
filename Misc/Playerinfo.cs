@@ -1,8 +1,4 @@
-﻿using Exiled.API.Extensions;
-using Exiled.API.Features;
-using Exiled.Events.EventArgs.Player;
-using MEC;
-using System.Collections.Generic;
+﻿using Exiled.API.Features;
 using UnityEngine;
 
 namespace Riddleyinnai.Misc

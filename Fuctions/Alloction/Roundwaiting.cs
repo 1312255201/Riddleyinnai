@@ -3,11 +3,6 @@ using Exiled.Events.EventArgs.Player;
 using MapEditorReborn.API.Features.Objects;
 using MEC;
 using PlayerRoles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Riddleyinnai.Fuctions.Alloction

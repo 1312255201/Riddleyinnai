@@ -1,20 +1,17 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Events.EventArgs.Player;
-using Riddleyinnai.Database;
 using Riddleyinnai.Database.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai.User
 {
     [CommandHandler(typeof(GameConsoleCommandHandler))]
     [CommandHandler(typeof(ClientCommandHandler))]
     public class StatTrakCommand : ICommand
-    {
+    {    public bool SanitizeResponse { get; }
+
         public string Command => "stattrak";
 
         public string[] Aliases => new string[] { };
@@ -119,11 +116,15 @@ namespace Riddleyinnai.User
         {
             if(ev.Player != null)
             {
-                if(Statraks.TryGetValue(ev.Player.UserId,out var weapons))
+                if (ev.Player.UserId != null)
                 {
-                    //new Task(() => Methods.Updateweapons(weapons)).Start();
-                    Statraks.Remove(ev.Player.UserId);
+                    if(Statraks.TryGetValue(ev.Player.UserId,out var weapons))
+                    {
+                        //new Task(() => Methods.Updateweapons(weapons)).Start();
+                        Statraks.Remove(ev.Player.UserId);
+                    }    
                 }
+                
             }
         }
         public static void Register()

@@ -1,15 +1,8 @@
 ﻿using System;
 using CommandSystem;
 using Exiled.API.Features;
-using MEC;
 using RemoteAdmin;
 using Riddleyinnai.Fuctions.Items;
-using Riddleyinnai.Fuctions.SpRoles.ChaosRoles;
-using Riddleyinnai.Fuctions.SpRoles.CllassD;
-using Riddleyinnai.Fuctions.SpRoles.MTFRoles;
-using Riddleyinnai.Fuctions.SpRoles.Scientists;
-using Riddleyinnai.Fuctions.SpRoles.SCPRoles;
-using Riddleyinnai.Fuctions.SpRoles.Tutroles;
 
 namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
 
@@ -21,6 +14,7 @@ namespace Riddleyinnai.Fuctions.Commands.AdminCommands;
         public string Command { get; } = "scpitem";
         public string[] Aliases { get; } = { "scpitem" };
         public string Description { get; } = "管理员指令 用于调试刷特殊角色";
+        public bool SanitizeResponse { get; }
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

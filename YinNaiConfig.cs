@@ -1,10 +1,5 @@
 ﻿using Exiled.API.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Riddleyinnai
 {
@@ -68,5 +63,11 @@ namespace Riddleyinnai
         public int scp3114numnum { get; set; } = 0;
         [Description("scp2490最小刷新人数")] 
         public int scp2490minnum { get; set; } = 0;
+
+        [Description("九尾狐志愿兵最少刷新人数")]
+        public int ntfhelperminnum { get; set; } = 20;
+
+        [Description("SCP2818最少刷新人数")] 
+        public int scp2818minnum { get; set; } = 28;
     }
 }
